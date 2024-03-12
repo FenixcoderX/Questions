@@ -3,7 +3,7 @@ let users = {
     id: 'benanderson',
     password:'password123',
     name: 'Benjamin Anderson',
-    avatarURL: "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png",
+    avatarURL: "https://i.postimg.cc/FH1nJ6gx/avatar4.jpg",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -16,7 +16,7 @@ let users = {
     id: 'annako',
     password:'abc321',
     name: 'Anna Kowalczyk',
-    avatarURL: "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_person_kid_child-512.png",
+    avatarURL: "https://i.postimg.cc/7PnKf47z/avatar1.jpg", 
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -27,7 +27,7 @@ let users = {
     id: 'lucarossi',
     password:'xyz123',
     name: 'Luca Rossi',
-    avatarURL: "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/old_man_male_portrait-512.png",
+    avatarURL: "https://i.postimg.cc/vTHC2Z9J/avatar2.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -39,7 +39,7 @@ let users = {
     id: 'dubois',
     password:'pass246',
     name: 'Pierre Dubois',
-    avatarURL: "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/nun_sister_woman_avatar-512.png",
+    avatarURL: "https://i.postimg.cc/J0qdbV2p/avatar3.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },
@@ -51,49 +51,49 @@ let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     author: 'benanderson',
-    timestamp: 1467166872634,
+    timestamp: 1700754192235,
     optionOne: {
       votes: ['benanderson'],
-      text: 'buying a house in the suburbs',
+      text: 'buy a house in the suburbs',
     },
     optionTwo: {
       votes: [],
-      text: 'renting an apartment in the city'
+      text: 'rent an apartment in the city'
     }
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     author: 'lucarossi',
-    timestamp: 1468479767190,
+    timestamp: 1700740000631,
     optionOne: {
       votes: [],
-      text: 'taking a gap year to travel',
+      text: 'take a gap year to travel',
     },
     optionTwo: {
       votes: ['lucarossi', 'benanderson'],
-      text: 'starting a new job immediately'
+      text: 'start a new job immediately'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
     author: 'benanderson',
-    timestamp: 1488579767190,
+    timestamp: 1700655802264,
     optionOne: {
       votes: [],
-      text: 'adopting a dog from a shelter',
+      text: 'adopt a dog from a shelter',
     },
     optionTwo: {
       votes: ['benanderson'],
-      text: 'purchasing a purebred puppy from a breeder'
+      text: 'purchase a purebred puppy from a breeder'
     }
   },
   "loxhs1bqm25b708cmbf3g": {
     id: 'loxhs1bqm25b708cmbf3g',
     author: 'annako',
-    timestamp: 1482579767190,
+    timestamp: 1700575962234,
     optionOne: {
       votes: [],
-      text: 'trying skydiving for the first time',
+      text: 'try skydiving for the first time',
     },
     optionTwo: {
       votes: ['benanderson'],
@@ -103,27 +103,27 @@ let questions = {
   "vthrdm985a262al8qx3do": {
     id: 'vthrdm985a262al8qx3do',
     author: 'annako',
-    timestamp: 1489579767190,
+    timestamp: 1700776863253,
     optionOne: {
       votes: ['annako'],
-      text: 'investing in stocks',
+      text: 'start a new hobby',
     },
     optionTwo: {
       votes: ['lucarossi'],
-      text: 'putting money into a high-yield savings account'
+      text: 'continue with current interests'
     }
   },
   "xj352vofupe1dqz9emx13r": {
     id: 'xj352vofupe1dqz9emx13r',
     author: 'lucarossi',
-    timestamp: 1493579767190,
+    timestamp: 1700747601631,
     optionOne: {
       votes: ['lucarossi', 'dubois'],
-      text: 'exploring a dense rainforest alone',
+      text: 'explore a dense rainforest alone',
     },
     optionTwo: {
       votes: ['annako'],
-      text: 'joining a guided wildlife tour in the Amazon'
+      text: 'join a guided wildlife tour in the Amazon'
     }
   },
 }

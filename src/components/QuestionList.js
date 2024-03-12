@@ -8,7 +8,7 @@ const QuestionList = ({ authedUser, questions }) => {
   const [showNewQuestions, setFirstOption] = useState(true);
   console.log('showNewQuestions in QuestionList', showNewQuestions);
 
-  //we сreate an array with keys from the questions object (aka id). First, we filter questions 
+  //we сreate an array with keys from the questions object (aka id). First, we filter questions
   //that the logged-in user has not responded to, and then sort them by creation time in descending order
   const newQuestions = Object.keys(questions)
     .filter((key, index) => {
@@ -19,7 +19,7 @@ const QuestionList = ({ authedUser, questions }) => {
     })
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-  //we сreate an array with keys from the questions object (aka id). First, we filter questions 
+  //we сreate an array with keys from the questions object (aka id). First, we filter questions
   //that the logged-in user has responded to, and then sort them by creation time in descending order
   const answeredQuestions = Object.keys(questions)
     .filter((key, index) => {
@@ -34,8 +34,8 @@ const QuestionList = ({ authedUser, questions }) => {
   // console.log('answeredQuestions', answeredQuestions);
 
   return (
-    <div className="question-list-container">
-      <button
+    <div>
+      {/* <button
         data-testid="create-button"
         className="btn btn-outline-secondary text-nowrap"
         onClick={() => setFirstOption(!showNewQuestions)}
@@ -44,10 +44,20 @@ const QuestionList = ({ authedUser, questions }) => {
       >
         {!showNewQuestions && <span>Show new questions</span>}
         {showNewQuestions && <span>Show answered questions</span>}
-      </button>
+      </button> */}
       {showNewQuestions && (
-        <div className="question-list-new">
-          <h3 className="question-list-header">New Questions</h3>
+        <div className="question-list-container">
+          <h3 className="question-list-header">Questions</h3>
+
+          <button
+            data-testid="create-button"
+            className="btn btn-outline-secondary text-nowrap question-toggle"
+            onClick={() => setFirstOption(!showNewQuestions)}
+          >
+            <span className="toggle-unactive">Answered</span>{' '}
+            <span className="toggle-active">New</span>
+          </button>
+
           <div className="question-list-cards">
             <ul>
               {newQuestions.map((id) => (
@@ -60,8 +70,18 @@ const QuestionList = ({ authedUser, questions }) => {
         </div>
       )}
       {!showNewQuestions && (
-        <div className="question-list-done">
-          <h3 className="question-list-header">Answered Questions</h3>
+        <div className="question-list-container">
+          <h3 className="question-list-header">Questions</h3>
+
+          <button
+            data-testid="create-button"
+            className="btn btn-outline-secondary text-nowrap question-toggle"
+            onClick={() => setFirstOption(!showNewQuestions)}
+          >
+            <span className="toggle-active">Answered</span>{' '}
+            <span className="toggle-unactive">New</span>
+          </button>
+
           <div className="question-list-cards">
             <ul>
               {answeredQuestions.map((id) => (

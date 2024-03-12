@@ -11,48 +11,48 @@ Object {
         <h3
           class="question-new-header"
         >
-          HELP ME CHOOSE
+          Create new question
         </h3>
         <div
           class="question-new-header"
         >
-          Create your own question
+          Help Me Choose
         </div>
-        <br />
         <form
-          class="input-form"
+          class="textarea-form mb-3"
         >
-          <label>
+          <label
+            class="form-label"
+          >
             First option
           </label>
-          <div />
-          <input
-            class="TODO"
+          <textarea
+            class="form-control"
             data-testid="first-option-input"
             itemid=""
             maxlength="100"
-            placeholder="first option"
-            value=""
+            placeholder="maximum 100 characters"
+            rows="3"
           />
-          <label>
+          <label
+            class="form-label"
+          >
             Second option
           </label>
-          <div />
-          <input
-            class="TODO"
+          <textarea
+            class="form-control"
             data-testid="second-option-input"
             maxlength="100"
-            placeholder="second option"
-            value=""
+            placeholder="maximum 100 characters"
+            rows="3"
           />
-          <br />
           <button
-            class="btn btn-outline-secondary"
+            class="btn btn-dark text-nowrap"
             data-testid="create-button"
             disabled=""
             type="submit"
           >
-            Create
+            Send
           </button>
         </form>
       </div>
@@ -65,48 +65,48 @@ Object {
       <h3
         class="question-new-header"
       >
-        HELP ME CHOOSE
+        Create new question
       </h3>
       <div
         class="question-new-header"
       >
-        Create your own question
+        Help Me Choose
       </div>
-      <br />
       <form
-        class="input-form"
+        class="textarea-form mb-3"
       >
-        <label>
+        <label
+          class="form-label"
+        >
           First option
         </label>
-        <div />
-        <input
-          class="TODO"
+        <textarea
+          class="form-control"
           data-testid="first-option-input"
           itemid=""
           maxlength="100"
-          placeholder="first option"
-          value=""
+          placeholder="maximum 100 characters"
+          rows="3"
         />
-        <label>
+        <label
+          class="form-label"
+        >
           Second option
         </label>
-        <div />
-        <input
-          class="TODO"
+        <textarea
+          class="form-control"
           data-testid="second-option-input"
           maxlength="100"
-          placeholder="second option"
-          value=""
+          placeholder="maximum 100 characters"
+          rows="3"
         />
-        <br />
         <button
-          class="btn btn-outline-secondary"
+          class="btn btn-dark text-nowrap"
           data-testid="create-button"
           disabled=""
           type="submit"
         >
-          Create
+          Send
         </button>
       </form>
     </div>

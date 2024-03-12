@@ -61,7 +61,6 @@ const LogIn = ({ dispatch, users }) => {
     setPassword(password);
   };
 
-  // img src="https://cdn3.iconfinder.com/data/icons/social-media-chat-1/512/Ask-512.png"
   return (
     <div className="login-container">
       <h3 className="login-header">HELP ME CHOOSE</h3>
@@ -73,32 +72,32 @@ const LogIn = ({ dispatch, users }) => {
 
       <h5>Log In</h5>
 
-      <form className="input-form" onSubmit={handleSubmit}>
-        <label>Username</label>
+      <form className="input-form mb-3" onSubmit={handleSubmit}>
+        <label className="form-label">Username</label>
         <input
           itemID=""
-          placeholder="username"
+          name="username"
           value={username}
           onChange={handleChangeUsername}
-          className="TODO"
-          maxLength={100}
+          className="form-control"
+          maxLength={16}
         />
-        <label>Password</label>
+        <label className="form-label">Password</label>
         <input
-          placeholder="password"
+          name="password"
+          type="password"
           value={password}
           onChange={handleChangePassword}
-          className="TODO"
+          className="form-control"
           maxLength={100}
         />
         {(correct === false) && <div>Wrong username/password</div>}
-        <br/>
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-dark text-nowrap"
           type="submit"
           disabled={username === '' || password === ''}
         >
-          LogIn
+          Log In
         </button>
       </form>
     </div>

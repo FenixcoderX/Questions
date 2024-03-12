@@ -44,42 +44,39 @@ const QuestionView = ({
     <div><NotFound /></div>
   ) : (
     <div className="question-card-view-container">
-      <div>Question by {author}</div>
-      <br />
+      <div>Question by</div>
       <div>
         <img src={avatar} alt="Avatar" className="avatar" />
-        <br />
-        <br />
+        <div className="name-in-questionview" >{author}</div>
         <h3 className="question-card-header">Help me choose</h3>
         {!answered && (
           <div className="question-card-options">
             <p>{optionOne}</p>
-
             <button
               disabled={answered}
-              className="btn btn-outline-secondary"
+              className="btn btn-dark text-nowrap"
               value="optionOne"
               onClick={handleAnswer}
             >
-              Click
+              Choose
             </button>
           </div>
         )}
         {answered === 'optionOne' && (
-          <div className="question-card-option-selected">
+          <div className="question-card-options option-selected">
             <p>{optionOne}</p>
-            <div>Votes:{numberOfUsersForOptionOne}</div>{' '}
-            <span>
+            <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
+            <span className="votes">
               {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
               are voted
             </span>
           </div>
         )}
         {answered === 'optionTwo' && (
-          <div className="question-card-options">
+          <div className="question-card-options option-unselected">
             <p>{optionOne}</p>
-            <div>Votes:{numberOfUsersForOptionOne}</div>{' '}
-            <span>
+            <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
+            <span className="votes">
               {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
               are voted
             </span>
@@ -97,29 +94,29 @@ const QuestionView = ({
 
             <button
               disabled={answered}
-              className="btn btn-outline-secondary"
+              className="btn btn-dark text-nowrap"
               value="optionTwo"
               onClick={handleAnswer}
             >
-              Click
+              Choose
             </button>
           </div>
         )}
         {answered === 'optionTwo' && (
-          <div className="question-card-option-selected">
+          <div className="question-card-options option-selected">
             <p>{optionTwo}</p>
-            <div>Votes:{numberOfUsersForOptionTwo}</div>{' '}
-            <span>
+            <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
+            <span className="votes">
               {(numberOfUsersForOptionTwo * 100) / NumberOfAllUsers}% of users
               are voted
             </span>
           </div>
         )}
         {answered === 'optionOne' && (
-          <div className="question-card-options">
+          <div className="question-card-options option-unselected">
             <p>{optionTwo}</p>
-            <div>Votes:{numberOfUsersForOptionTwo}</div>{' '}
-            <span>
+            <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
+            <span className="votes">
               {(numberOfUsersForOptionTwo * 100) / NumberOfAllUsers}% of users
               are voted
             </span>

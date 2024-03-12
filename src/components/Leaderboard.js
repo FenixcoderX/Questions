@@ -27,7 +27,7 @@ const Leaderboard = ({ users }) => {
               <td>
                 <img src={users[id].avatarURL} alt="Avatar" className="avatar" />
                 <br />
-                {users[id].name}
+                <span className='name-in-table'>{users[id].name}</span>
                 <br />
                 {users[id].id}
               </td>

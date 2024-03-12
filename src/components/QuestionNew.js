@@ -28,39 +28,37 @@ const QuestionNew = ({ dispatch }) => {
 
   return (
     <div className="question-new-container">
-      <h3 className="question-new-header">HELP ME CHOOSE</h3>
-      <div className="question-new-header">Create your own question</div>
-      <br />
-      <form className="input-form" onSubmit={handleSubmit}>
-        <label>First option</label>
-        <div/>
-        <input
+      <h3 className="question-new-header">Create new question</h3>
+      <div className="question-new-header">Help Me Choose</div>
+      <form className="textarea-form mb-3" onSubmit={handleSubmit}>
+        <label className="form-label">First option</label>
+        <textarea
           itemID=""
           data-testid="first-option-input"
-          placeholder="first option"
+          placeholder="maximum 100 characters"
           value={firstOption}
           onChange={handleChangeFirstOption}
-          className="TODO"
+          className="form-control"
+          rows="3"
           maxLength={100}
-        />
-        <label>Second option</label>
-        <div/>
-        <input
+        ></textarea>
+        <label className="form-label">Second option</label>
+        <textarea
           data-testid="second-option-input"
-          placeholder="second option"
+          placeholder="maximum 100 characters"
           value={secondOption}
           onChange={handleChangeSecondOption}
-          className="TODO"
+          className="form-control"
+          rows="3"
           maxLength={100}
-        />
-        <br />
+        ></textarea>
         <button
           data-testid="create-button"
-          className="btn btn-outline-secondary"
+          className="btn btn-dark text-nowrap"
           type="submit"
           disabled={firstOption === '' || secondOption === ''}
         >
-          Create
+          Send
         </button>
       </form>
     </div>

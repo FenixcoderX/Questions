@@ -12,7 +12,7 @@ const QuestionCard = ({ author, time, avatar,id }) => {
       <img src={avatar} alt="Avatar" className="avatar" />
       <h5>{author}</h5>
       <p className="queston-card-timestamp">{time}</p>
-      <button className="btn btn-outline-secondary text-nowrap" onClick={() => navigate(`/question/${id}`)}>
+      <button className="btn btn-dark text-nowrap" onClick={() => navigate(`/question/${id}`)}>
         Show
       </button>
     </div>
