@@ -1,20 +1,26 @@
 import { connect } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../actions/questions';
 import NotFound from './NotFound';
 
-//this is necessary in order to be able to read the id from the search bar below
+/**
+ * Function that wraps a component and provides the URL parameters as props.
+ *
+ * @param {React.Component} Component - The component to be wrapped
+ * @returns {React.Component} - The wrapped component with the URL parameters as props
+ */
 const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
+  const ComponentWithRouterProp = () => {
+    // const location = useLocation();
+    // const navigate = useNavigate();
+    const params = useParams(); // Get the URL parameters
+    return <Component router={{ params }} />; // Pass the URL parameters as props to the wrapped component
   };
 
   return ComponentWithRouterProp;
 };
 
+// Component for viewing a question
 const QuestionView = ({
   dispatch,
   author,
@@ -28,27 +34,29 @@ const QuestionView = ({
   numberOfUsersForOptionTwo,
   NumberOfAllUsers,
 }) => {
-  // console.log('author in QuestionView', author);
-  // console.log('avatar in QuestionView', avatar);
-  // console.log('optionOne in QuestionView', optionOne);
-  // console.log('optionTwo in QuestionView', optionTwo);
-  // console.log('answered in QuestionView', answered);
-
+  /**
+   * Saves the answer for a question to the store and API
+   * @param {Event} e - The event object
+   */
   const handleAnswer = (e) => {
-    const answer = e.target.value;
-    // console.log('answer', answer);
+    const answer = e.target.value; // Get the answer from the button value
     dispatch(handleSaveQuestionAnswer(id, answer));
   };
 
+  // If the question ID does not exist, display the NotFound component
   return questionIDNotExists ? (
-    <div><NotFound /></div>
+    <div>
+      <NotFound />
+    </div>
   ) : (
+    // Otherwise, display the question view
     <div className="question-card-view-container">
       <div>Question by</div>
       <div>
         <img src={avatar} alt="Avatar" className="avatar" />
-        <div className="name-in-questionview" >{author}</div>
+        <div className="name-in-questionview">{author}</div>
         <h3 className="question-card-header">Help me choose</h3>
+        {/* If the question is  not answered, display the following html code for option one */}
         {!answered && (
           <div className="question-card-options">
             <p>{optionOne}</p>
@@ -62,32 +70,32 @@ const QuestionView = ({
             </button>
           </div>
         )}
+        {/* If the question is answered with optionOne, display the following html code */}
         {answered === 'optionOne' && (
           <div className="question-card-options option-selected">
             <p>{optionOne}</p>
             <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
             <span className="votes">
+              {/* Calculate the percentage of users who voted for optionOne */}
               {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
               are voted
             </span>
           </div>
         )}
+        {/* If the question is answered with optionTwo, display the following html code */}
         {answered === 'optionTwo' && (
           <div className="question-card-options option-unselected">
             <p>{optionOne}</p>
             <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
             <span className="votes">
+              {/* Calculate the percentage of users who voted for optionOne */}
               {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
               are voted
             </span>
           </div>
         )}
 
-        {/* 
-          For answered questions, each of the two options contains the following:
-          the text of the option;
-          the number of people who voted for that option;
-          the percentage of people who voted for that option. */}
+        {/* If the question is  not answered, display the following html code for option two */}
         {!answered && (
           <div className="question-card-options">
             <p>{optionTwo}</p>
@@ -102,6 +110,7 @@ const QuestionView = ({
             </button>
           </div>
         )}
+        {/* If the question is answered with optionTwo, display the following html code */}
         {answered === 'optionTwo' && (
           <div className="question-card-options option-selected">
             <p>{optionTwo}</p>
@@ -112,6 +121,7 @@ const QuestionView = ({
             </span>
           </div>
         )}
+        {/* If the question is answered with optionOne, display the following html code */}
         {answered === 'optionOne' && (
           <div className="question-card-options option-unselected">
             <p>{optionTwo}</p>
@@ -127,9 +137,9 @@ const QuestionView = ({
   );
 };
 
+// Use mapStateToProps to get necessary data from the store, url parametrs and return props
 const mapStateToProps = ({ questions, users, authedUser }, props) => {
-  const { id } = props.router.params;
-  // console.log('id', id);
+  const { id } = props.router.params; // Get the id of the question from the URL
 
   return questions[id]
     ? {
@@ -146,4 +156,5 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
     : { questionIDNotExists: true };
 };
 
+//connects component to the store and wraps it to withRouter function to get the URL parameters as props
 export default withRouter(connect(mapStateToProps)(QuestionView));

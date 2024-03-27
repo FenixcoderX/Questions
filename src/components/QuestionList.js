@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import QuestionCard from './QuestionCard';
+
+// Component for displaying a list of questions
 const QuestionList = ({ authedUser, questions }) => {
-  // console.log('authedUser in QuestionList', authedUser);
-  // console.log('questions in QuestionList', questions);
+  // Create state variable to toggle between new and answered questions
+  const [showNewQuestions, setShowNewQuestions] = useState(true);
 
-  const [showNewQuestions, setFirstOption] = useState(true);
-  console.log('showNewQuestions in QuestionList', showNewQuestions);
-
-  //we сreate an array with keys from the questions object (aka id). First, we filter questions
-  //that the logged-in user has not responded to, and then sort them by creation time in descending order
+  // Create an array with keys from the questions object (aka id). First, we filter questions
+  // that the logged-in user has not responded to, and then sort them by creation time in descending order
   const newQuestions = Object.keys(questions)
-    .filter((key, index) => {
+    .filter((key) => {
       return (
         !questions[key].optionOne.votes.includes(authedUser) &&
         !questions[key].optionTwo.votes.includes(authedUser)
@@ -19,10 +18,10 @@ const QuestionList = ({ authedUser, questions }) => {
     })
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-  //we сreate an array with keys from the questions object (aka id). First, we filter questions
-  //that the logged-in user has responded to, and then sort them by creation time in descending order
+  // Create an array with keys from the questions object (aka id). First, we filter questions
+  // that the logged-in user has responded to, and then sort them by creation time in descending order
   const answeredQuestions = Object.keys(questions)
-    .filter((key, index) => {
+    .filter((key) => {
       return (
         questions[key].optionOne.votes.includes(authedUser) ||
         questions[key].optionTwo.votes.includes(authedUser)
@@ -35,16 +34,8 @@ const QuestionList = ({ authedUser, questions }) => {
 
   return (
     <div>
-      {/* <button
-        data-testid="create-button"
-        className="btn btn-outline-secondary text-nowrap"
-        onClick={() => setFirstOption(!showNewQuestions)}
-        // type="submit"
-        // disabled={firstOption === '' || secondOption === ''}
-      >
-        {!showNewQuestions && <span>Show new questions</span>}
-        {showNewQuestions && <span>Show answered questions</span>}
-      </button> */}
+      
+      {/* Create this html code only if showNewQuestions is true */}
       {showNewQuestions && (
         <div className="question-list-container">
           <h3 className="question-list-header">Questions</h3>
@@ -52,7 +43,7 @@ const QuestionList = ({ authedUser, questions }) => {
           <button
             data-testid="create-button"
             className="btn btn-outline-secondary text-nowrap question-toggle"
-            onClick={() => setFirstOption(!showNewQuestions)}
+            onClick={() => setShowNewQuestions(!showNewQuestions)}
           >
             <span className="toggle-unactive">Answered</span>{' '}
             <span className="toggle-active">New</span>
@@ -60,6 +51,7 @@ const QuestionList = ({ authedUser, questions }) => {
 
           <div className="question-list-cards">
             <ul>
+              {/* Use map method to create html code for each question card using the QuestionCard component (Pass the id as a prop) */}
               {newQuestions.map((id) => (
                 <li key={id}>
                   <QuestionCard id={id} />
@@ -69,6 +61,8 @@ const QuestionList = ({ authedUser, questions }) => {
           </div>
         </div>
       )}
+
+      {/* Create this html code only if showNewQuestions is false */}
       {!showNewQuestions && (
         <div className="question-list-container">
           <h3 className="question-list-header">Questions</h3>
@@ -76,7 +70,7 @@ const QuestionList = ({ authedUser, questions }) => {
           <button
             data-testid="create-button"
             className="btn btn-outline-secondary text-nowrap question-toggle"
-            onClick={() => setFirstOption(!showNewQuestions)}
+            onClick={() => setShowNewQuestions(!showNewQuestions)}
           >
             <span className="toggle-active">Answered</span>{' '}
             <span className="toggle-unactive">New</span>
@@ -84,6 +78,7 @@ const QuestionList = ({ authedUser, questions }) => {
 
           <div className="question-list-cards">
             <ul>
+              {/* Use map method to create html code for each question card using the QuestionCard component (Pass the id as a prop) */}
               {answeredQuestions.map((id) => (
                 <li key={id}>
                   <QuestionCard id={id} />
@@ -97,8 +92,11 @@ const QuestionList = ({ authedUser, questions }) => {
   );
 };
 
+// Use mapStateToProps to get necessary data from the store and return props
 const mapStateToProps = ({ authedUser, questions }) => ({
   authedUser,
   questions,
 });
+
+//connects component to the store
 export default connect(mapStateToProps)(QuestionList);

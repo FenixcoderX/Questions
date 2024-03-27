@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
-const QuestionCard = ({ author, time, avatar,id }) => {
-  // console.log('author in QuestionCard', author);
-  // console.log('time in QuestionCard', time);
 
+// Component for displaying a question card
+const QuestionCard = ({ author, time, avatar,id }) => {
+  
+  // Create a navigate function using the useNavigate hook to redirect to required page
   const navigate = useNavigate();
 
   return (
@@ -19,6 +20,8 @@ const QuestionCard = ({ author, time, avatar,id }) => {
   );
 };
 
+
+// Use mapStateToProps to get necessary data from the store and parent component and return props
 const mapStateToProps = ({ questions, users }, { id }) => ({
   author: questions[id].author,
   time: formatDate(questions[id].timestamp),
@@ -26,4 +29,5 @@ const mapStateToProps = ({ questions, users }, { id }) => ({
   id,
 });
 
+//connects component to the store
 export default connect(mapStateToProps)(QuestionCard);

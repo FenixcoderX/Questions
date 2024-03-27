@@ -2,7 +2,7 @@
 
 A single-page voting application. Once the user logs in, the user is able to add a new question with two choices to vote, answer to the existing questions, see how other people have voted, toggle between answered and unanswered questions, view the leaderboard with the most number of asked and answered questions.
 
-This application build with React & Redux and JEST for tests.
+This application is built with React & Redux and JEST for tests.
 
 The `_DATA.js` file represents a fake database and methods that let access the data. 
 

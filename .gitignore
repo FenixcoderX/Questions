@@ -6,6 +6,7 @@
 .pnp.js
 /for_me
 /Screens
+.vscode
 
 # testing
 /coverage

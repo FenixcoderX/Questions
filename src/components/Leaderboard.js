@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
-// import { handleSaveQuestionAnswer } from '../actions/questions';
 
+// Component that displays the leaderboard
 const Leaderboard = ({ users }) => {
+
+  // Create array with users id sorted descending by the sum of the number of questions and answers they have
   const usersSorted = Object.keys(users).sort(
     (a, b) =>
       Object.keys(users[b].answers).length +
       users[b].questions.length -
       (Object.keys(users[a].answers).length + users[a].questions.length)
   );
-  console.log('usersSorted in Leaderboard', usersSorted);
 
   return (
     <div className="leaderboard-container">
@@ -22,12 +23,17 @@ const Leaderboard = ({ users }) => {
           </tr>
         </thead>
         <tbody>
+          {/* Use map method to create html for each user */}
           {usersSorted.map((id) => (
             <tr key={id}>
               <td>
-                <img src={users[id].avatarURL} alt="Avatar" className="avatar" />
+                <img
+                  src={users[id].avatarURL}
+                  alt="Avatar"
+                  className="avatar"
+                />
                 <br />
-                <span className='name-in-table'>{users[id].name}</span>
+                <span className="name-in-table">{users[id].name}</span>
                 <br />
                 {users[id].id}
               </td>
@@ -41,15 +47,12 @@ const Leaderboard = ({ users }) => {
   );
 };
 
+// Use mapStateToProps to get necessary data from the store and return props
 const mapStateToProps = ({ users }) => {
   return {
     users,
-    // avatar: users[questions[id].author].avatarURL,
-    // optionOne: questions[id].optionOne.text,
-    // optionTwo: questions[id].optionTwo.text,
-    // id,
-    // answered: users[authedUser].answers[id],
   };
 };
 
+//connects component to the store
 export default connect(mapStateToProps)(Leaderboard);

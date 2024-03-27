@@ -1,4 +1,4 @@
-
+// Component for 404 error page
 const NotFound = () => {
   return (
     <div className="notfound-container">
