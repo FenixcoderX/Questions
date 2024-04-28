@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate,useHistory } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import loginpic from '../assets/logo/IMG_5694.png';
-
 
 const LogIn = ({ dispatch, users }) => {
   const [username, setUsername] = useState('');
@@ -14,8 +13,6 @@ const LogIn = ({ dispatch, users }) => {
   // const goBack = () => {
   //     history.goBack()
   // }
-
-
 
   const handleSubmit = (e) => {
     let AUTHED_ID = null;
@@ -33,23 +30,21 @@ const LogIn = ({ dispatch, users }) => {
         AUTHED_ID = foundUser;
       } else {
         AUTHED_ID = null;
-        setCorrect (false);
+        setCorrect(false);
       }
     } else {
-      setCorrect (false);
+      setCorrect(false);
     }
 
     if (AUTHED_ID === null || !foundUser) {
     } else {
-      setCorrect (true);
-      setUsername ('')
-      setPassword('')
-    dispatch(setAuthedUser(AUTHED_ID))
-    localStorage.setItem("authedUser",AUTHED_ID);
-    //navigate(`/`);
-
-  };
-   
+      setCorrect(true);
+      setUsername('');
+      setPassword('');
+      dispatch(setAuthedUser(AUTHED_ID));
+      localStorage.setItem('authedUser', AUTHED_ID);
+      //navigate(`/`);
+    }
   };
 
   const handleChangeUsername = (e) => {
@@ -64,11 +59,7 @@ const LogIn = ({ dispatch, users }) => {
   return (
     <div className="login-container">
       <h3 className="login-header">HELP ME CHOOSE</h3>
-      <img
-        src={loginpic}
-        alt="loginpic"
-        className="loginpic"
-      />
+      <img src={loginpic} alt="loginpic" className="loginpic" />
 
       <h5>Log In</h5>
 
@@ -91,7 +82,7 @@ const LogIn = ({ dispatch, users }) => {
           className="form-control"
           maxLength={100}
         />
-        {(correct === false) && <div>Wrong username/password</div>}
+        {correct === false && <div>Wrong username/password</div>}
         <button
           className="btn btn-dark text-nowrap"
           type="submit"

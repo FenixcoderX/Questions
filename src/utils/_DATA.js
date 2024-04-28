@@ -6,7 +6,7 @@ let users = {
     avatarURL: "https://i.postimg.cc/FH1nJ6gx/avatar4.jpg",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne',
+      "6ni6ok3ym7mf1p33lnez": 'optionTwo',
       "am8ehyc8byjqgar0jgpub9": 'optionTwo',
       "loxhs1bqm25b708cmbf3g": 'optionTwo'
     },

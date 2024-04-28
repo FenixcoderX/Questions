@@ -1,4 +1,5 @@
 # Help Me Choose
+React & Redux | Hooks | JavaScript | Jest
 
 A single-page voting application. Once the user logs in, the user is able to add a new question with two choices to vote, answer to the existing questions, see how other people have voted, toggle between answered and unanswered questions, view the leaderboard with the most number of asked and answered questions.
 
