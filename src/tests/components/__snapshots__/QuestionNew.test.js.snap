@@ -16,7 +16,7 @@ Object {
         <div
           class="question-new-header"
         >
-          Help Me Choose
+          Questions
         </div>
         <form
           class="textarea-form mb-3"
@@ -70,7 +70,7 @@ Object {
       <div
         class="question-new-header"
       >
-        Help Me Choose
+        Questions
       </div>
       <form
         class="textarea-form mb-3"

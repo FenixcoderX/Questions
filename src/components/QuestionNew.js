@@ -47,7 +47,7 @@ const QuestionNew = ({ dispatch }) => {
   return (
     <div className="question-new-container">
       <h3 className="question-new-header">Create new question</h3>
-      <div className="question-new-header">Help Me Choose</div>
+      <div className="question-new-header">Write two options</div>
       <form className="textarea-form mb-3" onSubmit={handleSubmit}>
         <label className="form-label">First option</label>
         <textarea

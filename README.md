@@ -1,7 +1,7 @@
-# Help Me Choose
+# Questions
 React & Redux | Hooks | JavaScript | Jest
 
-A single-page voting application. Once the user logs in, the user is able to add a new question with two choices to vote, answer to the existing questions, see how other people have voted, toggle between answered and unanswered questions, view the leaderboard with the most number of asked and answered questions.
+A single-page application with questions. All data is synchronized in real time using Redux. Once the user logs in, they are able to add a new question with two answer choices, answer to the existing questions, see how other users have answered, toggle between answered and unanswered questions, and view the leaderboard showing users with the highest number of asked and answered questions.
 
 This application is built with React & Redux and JEST for tests.
 

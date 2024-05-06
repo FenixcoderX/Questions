@@ -71,7 +71,7 @@ const LogIn = ({ dispatch, users }) => {
   return (
     show && (
       <div className="login-container">
-        <h3 className="login-header">HELP ME CHOOSE</h3>
+        <h3 className="login-header">QUESTIONS</h3>
         <img src={loginpic} alt="loginpic" className="loginpic" />
 
         <h5>Log In</h5>

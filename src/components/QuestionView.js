@@ -55,7 +55,7 @@ const QuestionView = ({
       <div>
         <img src={avatar} alt="Avatar" className="avatar" />
         <div className="name-in-questionview">{author}</div>
-        <h3 className="question-card-header">Help me choose</h3>
+        <h3 className="question-card-header">Choose the answer</h3>
         {/* If the question is  not answered, display the following html code for option one */}
         {!answered && (
           <div className="question-card-options">
