@@ -1,3 +1,4 @@
+import './NavBar.css';
 import useResize from '../utils/hooks';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -71,7 +72,7 @@ const NavBar = ({ dispatch, user }) => {
             <li>
               <button
                 className="btn btn-outline-secondary text-nowrap"
-                onClick={(e) => logout(e)}
+                onClick={logout}
               >
                 Logout
               </button>
@@ -100,7 +101,7 @@ const NavBar = ({ dispatch, user }) => {
                 <button
                   className="btn btn-outline-secondary text-nowrap"
                   type="button"
-                  onClick={(e) => logout(e)}
+                  onClick={logout}
                 >
                   Logout
                 </button>

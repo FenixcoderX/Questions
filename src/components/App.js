@@ -1,4 +1,5 @@
-import { useEffect, Fragment } from 'react';
+import './App.css';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { handleInitialData } from '../actions/shared';
@@ -12,23 +13,25 @@ import RequireAuth from './RequireAuth';
 import LogIn from './LogIn';
 import LoadingBar from 'react-redux-loading-bar';
 
-
 // Main component for the application
 const App = (props) => {
   // useEffect hook to dispatch the handleInitialData action creator when the component mounts to get the initial data from the store
   useEffect(() => {
     props.dispatch(handleInitialData());
+    // eslint-disable-next-line
   }, []);
 
+  const { UserNotSingedIn,loading } = props;
+
   return (
-    // React Fragment is a container that doesn’t render any extra element to the DOM.
-    <Fragment>
+    // <> is a container that doesn’t render any extra element to the DOM.
+    <>
       {/* external component that shows a loading bar until app has finished all initial dispatches */}
-      <LoadingBar /> 
+      <LoadingBar />
       <div className="main-container">
         {/* If the user is signed in and the loading data finished, the NavBar and all other components are rendered */}
-        {!props.UserNotSingedIn && !props.loading && <NavBar />}
-        {!props.UserNotSingedIn && !props.loading && (
+        {!UserNotSingedIn && !loading && <NavBar />}
+        {!UserNotSingedIn && !loading && (
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route
@@ -72,22 +75,23 @@ const App = (props) => {
           </Routes>
         )}
         {/* If the user is not signed in and the loading data finished, the LogIn component is rendered in any route */}
-        {props.UserNotSingedIn && !props.loading && (
+        {UserNotSingedIn && !loading && (
           <Routes>
             <Route path="*" element={<LogIn />} />
           </Routes>
         )}
       </div>
-    </Fragment>
+    </>
   );
 };
 
 // Use mapStateToProps to get necessary data from the store and return props
 const mapStateToProps = ({ authedUser, loadingBar }) => {
   return {
-  UserNotSingedIn: authedUser === null, //if there is no authedUser, UserNotSingedIn is true
-  loading: loadingBar.default === 1, //while loadingBar is active, loading is true
-}};
+    UserNotSingedIn: authedUser === null, //if there is no authedUser, UserNotSingedIn is true
+    loading: loadingBar.default === 1, //while loadingBar is active, loading is true
+  };
+};
 
 //connects component to the store
 export default connect(mapStateToProps)(App);

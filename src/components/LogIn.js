@@ -1,13 +1,14 @@
+import './LogIn.css';
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useNavigate, useHistory } from 'react-router-dom';
+// import { useNavigate, useHistory } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import loginpic from '../assets/logo/IMG_5694.png';
 
 const LogIn = ({ dispatch, users }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [correct, setCorrect] = useState(true);
   const [show, setShow] = useState(false);
   // const history = useHistory()

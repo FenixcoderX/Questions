@@ -1,3 +1,4 @@
+import './QuestionList.css';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import QuestionCard from './QuestionCard';
@@ -34,7 +35,6 @@ const QuestionList = ({ authedUser, questions }) => {
 
   return (
     <div>
-      
       {/* Create this html code only if showNewQuestions is true */}
       {showNewQuestions && (
         <div className="question-list-container">

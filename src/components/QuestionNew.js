@@ -1,3 +1,4 @@
+import "./QuestionNew.css";
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,3 +1,4 @@
+import './Leaderboard.css';
 import { connect } from 'react-redux';
 
 // Component that displays the leaderboard

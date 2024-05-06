@@ -1,0 +1,47 @@
+.question-list-container {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Toggle Button */
+  .question-toggle {
+    border-width: 1px;
+    border-color: #2222221f;
+    font-size: 0.9em;
+    height: 40px;
+    border-radius: 35px;
+    margin-bottom: 15px;
+  }
+  .toggle-active {
+    color: purple;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+  }
+  .toggle-unactive {
+    color: #222;
+    width: 100px;
+  }
+  /* Cards */
+  .question-list-cards ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    text-decoration: none;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: 0px;
+  }
+  .question-list-cards li {
+    width: 180px;
+    list-style-type: none;
+    padding: 4px;
+    text-decoration: none;
+  }

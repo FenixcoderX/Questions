@@ -1,10 +1,10 @@
+import './QuestionCard.css';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
 
 // Component for displaying a question card
-const QuestionCard = ({ author, time, avatar,id }) => {
-  
+const QuestionCard = ({ author, time, avatar, id }) => {
   // Create a navigate function using the useNavigate hook to redirect to required page
   const navigate = useNavigate();
 
@@ -13,13 +13,15 @@ const QuestionCard = ({ author, time, avatar,id }) => {
       <img src={avatar} alt="Avatar" className="avatar" />
       <h5>{author}</h5>
       <p className="queston-card-timestamp">{time}</p>
-      <button className="btn btn-dark text-nowrap" onClick={() => navigate(`/question/${id}`)}>
+      <button
+        className="btn btn-dark text-nowrap"
+        onClick={() => navigate(`/question/${id}`)}
+      >
         Show
       </button>
     </div>
   );
 };
-
 
 // Use mapStateToProps to get necessary data from the store and parent component and return props
 const mapStateToProps = ({ questions, users }, { id }) => ({

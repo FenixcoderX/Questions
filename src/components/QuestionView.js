@@ -1,3 +1,4 @@
+import './QuestionView.css';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../actions/questions';
@@ -70,21 +71,13 @@ const QuestionView = ({
             </button>
           </div>
         )}
-        {/* If the question is answered with optionOne, display the following html code */}
-        {answered === 'optionOne' && (
-          <div className="question-card-options option-selected">
-            <p>{optionOne}</p>
-            <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
-            <span className="votes">
-              {/* Calculate the percentage of users who voted for optionOne */}
-              {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
-              are voted
-            </span>
-          </div>
-        )}
-        {/* If the question is answered with optionTwo, display the following html code */}
-        {answered === 'optionTwo' && (
-          <div className="question-card-options option-unselected">
+        {/* If the question has been answered, display the following html code and set the class based on the answer */}
+        {(answered === 'optionOne' || answered === 'optionTwo') && (
+          <div
+            className={`question-card-options ${
+              answered === 'optionOne' ? 'option-selected' : 'option-unselected'
+            }`}
+          >
             <p>{optionOne}</p>
             <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
             <span className="votes">
@@ -110,20 +103,13 @@ const QuestionView = ({
             </button>
           </div>
         )}
-        {/* If the question is answered with optionTwo, display the following html code */}
-        {answered === 'optionTwo' && (
-          <div className="question-card-options option-selected">
-            <p>{optionTwo}</p>
-            <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
-            <span className="votes">
-              {(numberOfUsersForOptionTwo * 100) / NumberOfAllUsers}% of users
-              are voted
-            </span>
-          </div>
-        )}
-        {/* If the question is answered with optionOne, display the following html code */}
-        {answered === 'optionOne' && (
-          <div className="question-card-options option-unselected">
+        {/* If the question has been answered, display the following html code and set the class based on the answer */}
+        {(answered === 'optionTwo' || answered === 'optionOne') && (
+          <div
+            className={`question-card-options ${
+              answered === 'optionTwo' ? 'option-selected' : 'option-unselected'
+            }`}
+          >
             <p>{optionTwo}</p>
             <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
             <span className="votes">

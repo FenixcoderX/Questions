@@ -1,0 +1,18 @@
+/* Single Card */
+.question-card-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 13px;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+}
+.question-card-container button {
+  border-radius: 35px;
+}
+
+.queston-card-timestamp {
+  font-size: 12px;
+}
