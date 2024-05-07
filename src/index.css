@@ -5,7 +5,6 @@ body {
   color: #222;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: radial-gradient(at top left, #868EEE, #dd81ff); */
   background: radial-gradient(at top left, #a9c7ee, #c2b2e0);
 }
 

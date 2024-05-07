@@ -1,26 +1,20 @@
 import './LogIn.css';
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
-// import { useNavigate, useHistory } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 import loginpic from '../assets/logo/IMG_5694.png';
 
 const LogIn = ({ dispatch, users }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const navigate = useNavigate();
   const [correct, setCorrect] = useState(true);
   const [show, setShow] = useState(false);
-  // const history = useHistory()
-  // const goBack = () => {
-  //     history.goBack()
-  // }
 
   // Set delay to show the component
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(true);
-    }, 10); // 10ms delay
+    }, 10);
 
     return () => {
       clearTimeout(timer);
@@ -30,10 +24,6 @@ const LogIn = ({ dispatch, users }) => {
   const handleSubmit = (e) => {
     let AUTHED_ID = null;
     e.preventDefault();
-    // dispatch(handleСreateQuestion(firstOption, secondOption));
-    // setFirstOption('');
-    // setSecondOption('');
-    // navigate(`/`);
     const foundUser = Object.keys(users).find((id) => id === username);
     console.log('users', users);
     console.log('foundUser', foundUser);
@@ -56,7 +46,6 @@ const LogIn = ({ dispatch, users }) => {
       setPassword('');
       dispatch(setAuthedUser(AUTHED_ID));
       localStorage.setItem('authedUser', AUTHED_ID);
-      //navigate(`/`);
     }
   };
 

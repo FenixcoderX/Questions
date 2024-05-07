@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleСreateQuestion } from '../actions/questions';
 
-//Component for creating a new question
 const QuestionNew = ({ dispatch }) => {
 
   // Create state variables for first and second options for the question
@@ -84,6 +83,4 @@ const QuestionNew = ({ dispatch }) => {
   );
 };
 
-
-//connects component to the store
 export default connect()(QuestionNew);

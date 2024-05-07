@@ -1,7 +1,6 @@
 import './Leaderboard.css';
 import { connect } from 'react-redux';
 
-// Component that displays the leaderboard
 const Leaderboard = ({ users }) => {
 
   // Create array with users id sorted descending by the sum of the number of questions and answers they have
@@ -48,12 +47,10 @@ const Leaderboard = ({ users }) => {
   );
 };
 
-// Use mapStateToProps to get necessary data from the store and return props
 const mapStateToProps = ({ users }) => {
   return {
     users,
   };
 };
 
-//connects component to the store
 export default connect(mapStateToProps)(Leaderboard);

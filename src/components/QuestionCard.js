@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
 
-// Component for displaying a question card
 const QuestionCard = ({ author, time, avatar, id }) => {
   // Create a navigate function using the useNavigate hook to redirect to required page
   const navigate = useNavigate();
@@ -31,5 +30,5 @@ const mapStateToProps = ({ questions, users }, { id }) => ({
   id,
 });
 
-//connects component to the store
+
 export default connect(mapStateToProps)(QuestionCard);

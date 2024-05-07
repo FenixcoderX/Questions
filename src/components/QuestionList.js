@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import QuestionCard from './QuestionCard';
 
-// Component for displaying a list of questions
 const QuestionList = ({ authedUser, questions }) => {
   // Create state variable to toggle between new and answered questions
   const [showNewQuestions, setShowNewQuestions] = useState(true);
@@ -29,9 +28,6 @@ const QuestionList = ({ authedUser, questions }) => {
       );
     })
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
-
-  // console.log('newQuestions', newQuestions);
-  // console.log('answeredQuestions', answeredQuestions);
 
   return (
     <div>
@@ -92,11 +88,9 @@ const QuestionList = ({ authedUser, questions }) => {
   );
 };
 
-// Use mapStateToProps to get necessary data from the store and return props
 const mapStateToProps = ({ authedUser, questions }) => ({
   authedUser,
   questions,
 });
 
-//connects component to the store
 export default connect(mapStateToProps)(QuestionList);

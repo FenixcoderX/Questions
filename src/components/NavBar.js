@@ -5,13 +5,10 @@ import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 import homeicon from '../assets/logo/IMG_5694.png';
 
-// Navigation bar component
 const NavBar = ({ dispatch, user }) => {
-  // console.log("user in NavBar",user);
 
   // Use hook to save window width and screen size flags to variable
   const screenWidthTrueFalse = useResize();
-  // console.log (screenWidthTrueFalse);
 
   /**
    * Logs out the authenticated user
@@ -96,7 +93,6 @@ const NavBar = ({ dispatch, user }) => {
               <li id="nav-user-name" className="drop-down-container">
                 {user.name}
               </li>
-              {/* <li> <hr className="dropdown-divider"/></li> */}
               <li className="drop-down-container">
                 <button
                   className="btn btn-outline-secondary text-nowrap"

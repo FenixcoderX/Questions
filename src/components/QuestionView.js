@@ -12,8 +12,6 @@ import NotFound from './NotFound';
  */
 const withRouter = (Component) => {
   const ComponentWithRouterProp = () => {
-    // const location = useLocation();
-    // const navigate = useNavigate();
     const params = useParams(); // Get the URL parameters
     return <Component router={{ params }} />; // Pass the URL parameters as props to the wrapped component
   };
@@ -21,7 +19,6 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp;
 };
 
-// Component for viewing a question
 const QuestionView = ({
   dispatch,
   author,
@@ -123,7 +120,7 @@ const QuestionView = ({
   );
 };
 
-// Use mapStateToProps to get necessary data from the store, url parametrs and return props
+
 const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const { id } = props.router.params; // Get the id of the question from the URL
 
