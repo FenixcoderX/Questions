@@ -35,7 +35,7 @@ const Leaderboard = ({ users }) => {
                 <br />
                 <span className="name-in-table">{users[id].name}</span>
                 <br />
-                {users[id].id}
+                {/* {users[id].id} */}
               </td>
               <td>{users[id].questions.length}</td>
               <td>{Object.keys(users[id].answers).length}</td>

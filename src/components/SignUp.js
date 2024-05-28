@@ -53,7 +53,7 @@ const SignUp = ({ dispatch }) => {
         confirmPassword: '',
         name: '',
       });
-      navigate('/login');
+      navigate(-1);
     } catch (err) {
       setErrorMessage('Something went wrong');
     }
@@ -66,6 +66,10 @@ const SignUp = ({ dispatch }) => {
       [name]: value,
     }));
   };
+
+  const goBack = () => {
+    navigate(-1);
+  }
 
   return (
       <div className="login-container">
@@ -82,6 +86,14 @@ const SignUp = ({ dispatch }) => {
             onChange={handleChange}
             className="form-control"
             maxLength={16}
+          />
+          <label className="form-label">Full Name</label>
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="form-control"
+            maxLength={100}
           />
           <label className="form-label">Password</label>
           <input
@@ -104,14 +116,6 @@ const SignUp = ({ dispatch }) => {
           {!passwordMatch && (
             <p style={{ color: 'red' }}>Passwords are not matched!</p>
           )}
-          <label className="form-label">Name</label>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="form-control"
-            maxLength={100}
-          />
           <button
             className="btn btn-dark text-nowrap"
             type="submit"
@@ -129,7 +133,7 @@ const SignUp = ({ dispatch }) => {
         </form>
         <div>
           {' '}
-          Already have an account? <Link to="/login">Log In</Link>
+          Already have an account? <Link onClick={goBack}>Log In</Link>
         </div>
       </div>
     

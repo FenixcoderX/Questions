@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { setAuthedUser } from '../actions/authedUser';
 import loginpic from '../assets/logo/IMG_5694.png';
 import { Link } from 'react-router-dom';
+import OAuth from './OAuth';
 
 const LogIn = ({ dispatch }) => {
   const [username, setUsername] = useState('');
@@ -84,6 +85,7 @@ const LogIn = ({ dispatch }) => {
         </button>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
+      <OAuth/>
       <div>
         {' '}
         Don't have an account? <Link to="/signup">Sing Up</Link>

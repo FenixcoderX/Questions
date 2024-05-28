@@ -87,7 +87,7 @@ const QuestionView = ({
             <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
             <span className="votes">
               {/* Calculate the percentage of users who voted for optionOne */}
-              {(numberOfUsersForOptionOne * 100) / NumberOfAllUsers}% of users
+              {((numberOfUsersForOptionOne * 100) / NumberOfAllUsers).toFixed(0)}% of users
               are voted
             </span>
           </div>
@@ -118,7 +118,7 @@ const QuestionView = ({
             <p>{optionTwo}</p>
             <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
             <span className="votes">
-              {(numberOfUsersForOptionTwo * 100) / NumberOfAllUsers}% of users
+              {((numberOfUsersForOptionTwo * 100) / NumberOfAllUsers).toFixed(0)}% of users
               are voted
             </span>
           </div>
@@ -135,7 +135,7 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
 
   return questions[id]
     ? {
-        author: questions[id].author,
+        author: users[questions[id].author].name,
         avatar: users[questions[id].author].avatarURL,
         optionOne: questions[id].optionOne.text,
         optionTwo: questions[id].optionTwo.text,
