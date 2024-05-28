@@ -1,11 +1,13 @@
 # Questions
 React & Redux | Hooks | JavaScript | Jest
 
+[Link to API for Questions app](https://github.com/FenixcoderX/API_for_Questions_app)
+
 A single-page application with questions. All data is synchronized in real time using Redux. Once the user logs in, they are able to add a new question with two answer choices, answer to the existing questions, see how other users have answered, toggle between answered and unanswered questions, and view the leaderboard showing users with the highest number of asked and answered questions.
 
 This application is built with React & Redux and JEST for tests.
 
-The `_DATA.js` file represents a fake database and methods that let access the data. 
+This application works with API that connects with mongoDB.
 
 # Installation and usage
 To get started:
