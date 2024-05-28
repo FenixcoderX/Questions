@@ -6,7 +6,6 @@ import { setAuthedUser } from '../actions/authedUser';
 import homeicon from '../assets/logo/IMG_5694.png';
 
 const NavBar = ({ dispatch, user }) => {
-
   // Use hook to save window width and screen size flags to variable
   const screenWidthTrueFalse = useResize();
 
@@ -14,10 +13,29 @@ const NavBar = ({ dispatch, user }) => {
    * Logs out the authenticated user
    * @param {Event} e - The event object
    */
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(setAuthedUser(null));
-    localStorage.removeItem('authedUser');
+    try {
+      const response = await fetch('http://localhost:3001/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // include cookies in request
+      });
+
+      const responseJSON = await response.json();
+
+      if (responseJSON.success === false) {
+        throw new Error(responseJSON.message);
+      }
+
+      dispatch(setAuthedUser(null));
+      
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Problem with logging out');
+    }
   };
 
   return (

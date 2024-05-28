@@ -1,5 +1,3 @@
-import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
-
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 export const CREATE_QUESTION = 'CREATE_QUESTION';
@@ -47,24 +45,31 @@ export function saveQuestionAnswer({ authedUser, qid, answer }) {
 export function handleSaveQuestionAnswer(qid, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState(); // get the authenticated user from the state
-    
-    return _saveQuestionAnswer({
-      authedUser,
-      qid,
-      answer,
+    return fetch('http://localhost:3001/questions/saveanswer', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // include cookies in request
+      body: JSON.stringify({
+        qid,
+        answer,
+        authedUser,
+      }),
     })
-      .then(() =>
-        dispatch(
-          saveQuestionAnswer({
-            authedUser,
-            qid,
-            answer,
-          })
-        )
-      )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success === false) {
+          console.warn('Error from server: ', res.message);
+          throw new Error(
+            'There is an error answering the question. Try again.'
+          );
+        }
+      })
+      .then(() => dispatch(saveQuestionAnswer({ authedUser, qid, answer })))
       .catch((e) => {
         console.warn('Error in handleSaveQuestionAnswer: ', e);
-        alert('The was an error answering the question. Try again.');
+        throw new Error('There is an error answering the question. Try again.');
       });
   };
 }
@@ -93,15 +98,33 @@ export function handleСreateQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
-    return _saveQuestion({
-      optionOneText,
-      optionTwoText,
-      author: authedUser,
+    return fetch('http://localhost:3001/questions/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // include cookies in request
+      body: JSON.stringify({
+        optionOneText,
+        optionTwoText,
+        author: authedUser,
+      }),
     })
-      .then((question) => dispatch(createQuestion(question)))
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success === false) {
+          console.warn('Error from server: ', res.message);
+          throw new Error(
+            'There is an error creating new question. Try again.'
+          );
+        }
+        return res;
+      })
+      .then((res) => dispatch(createQuestion(res)))
       .catch((e) => {
         console.warn('Error in handleСreateQuestion: ', e);
-        alert('The was an error creating new question. Try again.');
+        throw new Error('There is an error creating new question. Try again.');
+        //alert('There was an error creating new question. Try again.');
       });
   };
 }

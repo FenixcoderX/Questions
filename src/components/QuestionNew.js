@@ -1,29 +1,33 @@
-import "./QuestionNew.css";
+import './QuestionNew.css';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handleСreateQuestion } from '../actions/questions';
 
 const QuestionNew = ({ dispatch }) => {
-
   // Create state variables for first and second options for the question
   const [firstOption, setFirstOption] = useState('');
   const [secondOption, setSecondOption] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Create a navigate function using the useNavigate hook to redirect to required page
   const navigate = useNavigate();
 
   /**
    * Handles the form submission for creating a new question, saves it to the store, clears the form and redirects to the home page
-   * 
+   *
    * @param {Event} e - The form submission event
    */
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-    dispatch(handleСreateQuestion(firstOption, secondOption));
-    setFirstOption('');
-    setSecondOption('');
-    navigate(`/`);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(handleСreateQuestion(firstOption, secondOption));
+      setFirstOption('');
+      setSecondOption('');
+      navigate(`/`);
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
   };
 
   /**
@@ -78,6 +82,7 @@ const QuestionNew = ({ dispatch }) => {
         >
           Send
         </button>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from '../actions/users';
+import { RECEIVE_USERS, CREATE_USER } from '../actions/users';
 import { SAVE_QUESTION_ANSWER, CREATE_QUESTION } from '../actions/questions';
 
 //state - it is part of the state for users (state.users), it comes from combineReducers in index.js
@@ -18,6 +18,14 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users,
       };
+
+    // Save new user to the state from API
+    case CREATE_USER: {
+      return {
+        ...state,
+        [action.user.id]: action.user,
+      };
+    }
 
     // Save answer to the question as string to the authed user object
     // Example path: state.userid.answers.questionid

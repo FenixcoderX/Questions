@@ -1,8 +1,9 @@
 import './QuestionView.css';
 import { connect } from 'react-redux';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../actions/questions';
-import NotFound from './NotFound';
+import NotFound from './ErrorPage';
 
 /**
  * Function that wraps a component and provides the URL parameters as props.
@@ -32,13 +33,20 @@ const QuestionView = ({
   numberOfUsersForOptionTwo,
   NumberOfAllUsers,
 }) => {
+
+  const [errorMessage, setErrorMessage] = useState('');
+
   /**
    * Saves the answer for a question to the store and API
    * @param {Event} e - The event object
    */
-  const handleAnswer = (e) => {
+  const handleAnswer = async (e) => {
     const answer = e.target.value; // Get the answer from the button value
-    dispatch(handleSaveQuestionAnswer(id, answer));
+    try {
+      await dispatch(handleSaveQuestionAnswer(id, answer));
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
   };
 
   // If the question ID does not exist, display the NotFound component
@@ -115,6 +123,7 @@ const QuestionView = ({
             </span>
           </div>
         )}
+           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
     </div>
   );
