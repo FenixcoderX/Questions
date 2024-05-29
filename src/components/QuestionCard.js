@@ -9,26 +9,29 @@ const QuestionCard = ({ author, time, avatar, id }) => {
 
   return (
     <div className="question-card-container">
-      <img src={avatar} alt="Avatar" className="avatar" />
-      <h5>{author}</h5>
-      <p className="queston-card-timestamp">{time}</p>
-      <button
-        className="btn btn-dark text-nowrap"
-        onClick={() => navigate(`/question/${id}`)}
-      >
-        Show
-      </button>
+      <div>
+        <img src={avatar} alt="Avatar" className="avatar" />
+        <h5>{author}</h5>
+      </div>
+      <div>
+        <p className="queston-card-timestamp">{time}</p>
+        <button
+          className="btn btn-dark text-nowrap"
+          onClick={() => navigate(`/question/${id}`)}
+        >
+          Show
+        </button>
+      </div>
     </div>
   );
 };
 
 // Use mapStateToProps to get necessary data from the store and parent component and return props
 const mapStateToProps = ({ questions, users }, { id }) => ({
-  author: questions[id].author,
+  author: users[questions[id].author].name,
   time: formatDate(questions[id].timestamp),
   avatar: users[questions[id].author].avatarURL,
   id,
 });
-
 
 export default connect(mapStateToProps)(QuestionCard);

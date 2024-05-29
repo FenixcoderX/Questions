@@ -1,6 +1,7 @@
 /* Single Card */
 .question-card-container {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   flex-wrap: wrap;
   border-radius: 13px;
@@ -8,6 +9,9 @@
   text-align: center;
   padding: 10px;
   background-color: white;
+  height: 200px;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 .question-card-container button {
   border-radius: 35px;
