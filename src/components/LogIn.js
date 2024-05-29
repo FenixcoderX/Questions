@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import OAuth from './OAuth';
 
 const LogIn = ({ dispatch }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -19,7 +19,7 @@ const LogIn = ({ dispatch }) => {
         method: 'POST',
         credentials: 'include', // include cookies in request
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: username, password: password }),
+        body: JSON.stringify({ email: email, password: password }),
       });
       const data = await res.json();
       if (data.success === false) {
@@ -33,7 +33,7 @@ const LogIn = ({ dispatch }) => {
       }
 
       AUTHED_ID = data.id;
-      setUsername('');
+      setEmail('');
       setPassword('');
       dispatch(setAuthedUser(AUTHED_ID));
     } catch (err) {
@@ -41,9 +41,10 @@ const LogIn = ({ dispatch }) => {
     }
   };
 
-  const handleChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+  const handleChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+
   };
   const handleChangePassword = (e) => {
     const password = e.target.value;
@@ -58,14 +59,14 @@ const LogIn = ({ dispatch }) => {
       <h5>Log In</h5>
 
       <form className="input-form mb-3" onSubmit={handleSubmit}>
-        <label className="form-label">Username</label>
+        <label className="form-label">E-mail</label>
         <input
-          itemID=""
-          name="username"
-          value={username}
-          onChange={handleChangeUsername}
+          type='email'
+          name="email"
+          value={email}
+          onChange={handleChangeEmail}
           className="form-control"
-          maxLength={16}
+          maxLength={100}
         />
         <label className="form-label">Password</label>
         <input
@@ -79,7 +80,7 @@ const LogIn = ({ dispatch }) => {
         <button
           className="btn btn-dark text-nowrap"
           type="submit"
-          disabled={username === '' || password === ''}
+          disabled={email === '' || password === ''}
         >
           Log In
         </button>

@@ -21,7 +21,7 @@ const OAuth = ({ dispatch }) => {
         credentials: 'include', // include cookies in request
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: resultsFromGoogle.user.email,
+          email: resultsFromGoogle.user.email,
           //email: resultsFromGoogle.user.email,
           avatarURL: resultsFromGoogle.user.photoURL,
           name: resultsFromGoogle.user.displayName,

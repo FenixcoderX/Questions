@@ -14,7 +14,7 @@ import { app } from '../firebase';
 
 const SignUp = ({ dispatch }) => {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
     confirmPassword: '',
     name: '',
@@ -115,7 +115,7 @@ const SignUp = ({ dispatch }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: formData.username,
+          email: formData.email,
           password: formData.password,
           name: formData.name,
           avatarURL: formData.avatarURL,
@@ -123,14 +123,17 @@ const SignUp = ({ dispatch }) => {
       });
       const data = await res.json();
       if (data.success === false) {
-        if (data.message.includes('duplicate key error')) {
-          return setErrorMessage('User already exists');
+        if (data.message.includes('name_1 dup key')) {
+          return setErrorMessage('Username already exists');
+        }
+        if (data.message.includes('email_1 dup key')) {
+          return setErrorMessage('E-mail already exists');
         }
         return setErrorMessage('Something went wrong');
       }
       dispatch(createUser(data));
       setFormData({
-        username: '',
+        email: '',
         password: '',
         confirmPassword: '',
         name: '',
@@ -149,15 +152,16 @@ const SignUp = ({ dispatch }) => {
       <h5>Sign Up</h5>
 
       <form className="input-form mb-3" onSubmit={handleSubmit}>
-        <label className="form-label">Username</label>
+        <label className="form-label">E-mail</label>
         <input
-          name="username"
-          value={formData.username}
+          name="email"
+          type="email"
+          value={formData.email}
           onChange={handleChange}
           className="form-control"
-          maxLength={16}
+          maxLength={100}
         />
-        <label className="form-label">Full Name</label>
+        <label className="form-label">Username</label>
         <input
           name="name"
           value={formData.name}
@@ -213,7 +217,7 @@ const SignUp = ({ dispatch }) => {
           className="btn btn-dark text-nowrap mt-2"
           type="submit"
           disabled={
-            formData.username === '' ||
+            formData.email === '' ||
             formData.password === '' ||
             formData.confirmPassword === '' ||
             formData.name === '' ||
