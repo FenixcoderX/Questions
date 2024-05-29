@@ -18,7 +18,8 @@ const SignUp = ({ dispatch }) => {
     password: '',
     confirmPassword: '',
     name: '',
-    avatarURL: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+    avatarURL:
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -85,12 +86,24 @@ const SignUp = ({ dispatch }) => {
 
   const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   useEffect(() => {
     setPasswordMatch(
       formData.password === formData.confirmPassword ||
         formData.confirmPassword === ''
     );
   }, [formData.password, formData.confirmPassword]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,18 +139,6 @@ const SignUp = ({ dispatch }) => {
     } catch (err) {
       setErrorMessage('Something went wrong');
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((formData) => ({
-      ...formData,
-      [name]: value,
-    }));
-  };
-
-  const goBack = () => {
-    navigate(-1);
   };
 
   return (
@@ -200,8 +201,14 @@ const SignUp = ({ dispatch }) => {
           className="avatar avatar-form"
           onClick={() => fileRef.current.click()}
         />
-        {imageFileUploading && imageFileUploadProgress<100 && <div>Uploading image: {imageFileUploadProgress.toFixed(0)}%</div>}
-        {imageFileUploadProgress===100 && <div>Uploading image: <span style={{color:"green"}}>successful</span></div>}
+        {imageFileUploading && imageFileUploadProgress < 100 && (
+          <div>Uploading image: {imageFileUploadProgress.toFixed(0)}%</div>
+        )}
+        {imageFileUploadProgress === 100 && (
+          <div>
+            Uploading image: <span style={{ color: 'green' }}>successful</span>
+          </div>
+        )}
         <button
           className="btn btn-dark text-nowrap mt-2"
           type="submit"
@@ -210,7 +217,8 @@ const SignUp = ({ dispatch }) => {
             formData.password === '' ||
             formData.confirmPassword === '' ||
             formData.name === '' ||
-            !passwordMatch || imageFileUploading
+            !passwordMatch ||
+            imageFileUploading
           }
         >
           Sign Up
