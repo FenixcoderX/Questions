@@ -1,8 +1,7 @@
 import './Leaderboard.css';
 import { connect } from 'react-redux';
 
-const Leaderboard = ({ users }) => {
-
+const Leaderboard = ({ users, authedUser }) => {
   // Create array with users id sorted descending by the sum of the number of questions and answers they have
   const usersSorted = Object.keys(users).sort(
     (a, b) =>
@@ -11,9 +10,19 @@ const Leaderboard = ({ users }) => {
       (Object.keys(users[a].answers).length + users[a].questions.length)
   );
 
+  // If the user is not in the top 10, add it to the list on the 10th position
+  const userIndex = usersSorted.findIndex((id) => id === authedUser);
+  if (userIndex >= 9) {
+    usersSorted.splice(userIndex, 1); // Remove the user from current position
+    usersSorted.splice(9, 0, authedUser); // Insert the user at position 10
+  }
+  // Limit the number of users to 10
+  usersSorted.length = 10;
+
   return (
     <div className="leaderboard-container">
       <h3 className="leaderboard-header">Leaderboard</h3>
+      <div className="leaderboard-subheader">Most active users based on the number of questions and asnswers</div>
       <table>
         <thead>
           <tr>
@@ -47,9 +56,10 @@ const Leaderboard = ({ users }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, authedUser }) => {
   return {
     users,
+    authedUser,
   };
 };
 
