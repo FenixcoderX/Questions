@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../actions/questions';
-import NotFound from './ErrorPage';
+import ErrorPage from './ErrorPage';
 
 /**
  * Function that wraps a component and provides the URL parameters as props.
@@ -24,6 +24,7 @@ const QuestionView = ({
   dispatch,
   author,
   avatar,
+  questionText,
   optionOne,
   optionTwo,
   id,
@@ -52,23 +53,27 @@ const QuestionView = ({
   // If the question ID does not exist, display the NotFound component
   return questionIDNotExists ? (
     <div>
-      <NotFound />
+      <ErrorPage errorType="404" errorMessage="Question not found" />
     </div>
   ) : (
     // Otherwise, display the question view
     <div className="question-card-view-container">
-      <div>Question by</div>
+      <h3 className='question-view-header'>Question by</h3>
       <div>
         <img src={avatar} alt="Avatar" className="avatar" />
         <div className="name-in-questionview">{author}</div>
+        <h3 className="question-card-header">Question</h3>
+        <div className="question-card-options">
+            <p className="question-view-text">{questionText}</p>
+        </div>
         <h3 className="question-card-header">Choose the answer</h3>
         {/* If the question is  not answered, display the following html code for option one */}
         {!answered && (
           <div className="question-card-options">
-            <p>{optionOne}</p>
+            <p className="question-view-text">{optionOne}</p>
             <button
               disabled={answered}
-              className="btn btn-dark text-nowrap"
+              className="btn btn-dark text-nowrap mt-3"
               value="optionOne"
               onClick={handleAnswer}
             >
@@ -83,8 +88,8 @@ const QuestionView = ({
               answered === 'optionOne' ? 'option-selected' : 'option-unselected'
             }`}
           >
-            <p>{optionOne}</p>
-            <div className="votes">Votes:{numberOfUsersForOptionOne}</div>{' '}
+            <p className="question-view-text">{optionOne}</p>
+            <div className="votes mt-3">Votes:{numberOfUsersForOptionOne}</div>{' '}
             <span className="votes">
               {/* Calculate the percentage of users who voted for optionOne */}
               {((numberOfUsersForOptionOne * 100) / NumberOfAllUsers).toFixed(0)}% of users
@@ -96,11 +101,11 @@ const QuestionView = ({
         {/* If the question is  not answered, display the following html code for option two */}
         {!answered && (
           <div className="question-card-options">
-            <p>{optionTwo}</p>
+            <p className="question-view-text">{optionTwo}</p>
 
             <button
               disabled={answered}
-              className="btn btn-dark text-nowrap"
+              className="btn btn-dark text-nowrap mt-3"
               value="optionTwo"
               onClick={handleAnswer}
             >
@@ -115,8 +120,8 @@ const QuestionView = ({
               answered === 'optionTwo' ? 'option-selected' : 'option-unselected'
             }`}
           >
-            <p>{optionTwo}</p>
-            <div className="votes">Votes:{numberOfUsersForOptionTwo}</div>{' '}
+            <p className="question-view-text">{optionTwo}</p>
+            <div className="votes mt-3">Votes:{numberOfUsersForOptionTwo}</div>{' '}
             <span className="votes">
               {((numberOfUsersForOptionTwo * 100) / NumberOfAllUsers).toFixed(0)}% of users
               are voted
@@ -137,6 +142,7 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
     ? {
         author: users[questions[id].author].name,
         avatar: users[questions[id].author].avatarURL,
+        questionText: questions[id].questionText,
         optionOne: questions[id].optionOne.text,
         optionTwo: questions[id].optionTwo.text,
         id,

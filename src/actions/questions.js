@@ -89,12 +89,12 @@ export function createQuestion(question) {
 
 /**
  * Asynchronous function that handles saving new question to api and store
- *
+ * @param {string} questionText - The text for the question text
  * @param {string} optionOneText - The text for the first option answer of the question
  * @param {string} optionTwoText - The text for the second option answer of the question
  * @returns {Function} A function that returns fetch request to API and then dispatches the createQuestion action
  */
-export function handleСreateQuestion(optionOneText, optionTwoText) {
+export function handleСreateQuestion(questionText, optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
@@ -105,6 +105,7 @@ export function handleСreateQuestion(optionOneText, optionTwoText) {
       },
       credentials: 'include', // include cookies in request
       body: JSON.stringify({
+        questionText,
         optionOneText,
         optionTwoText,
         author: authedUser,

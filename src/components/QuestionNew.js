@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { handleСreateQuestion } from '../actions/questions';
 
 const QuestionNew = ({ dispatch }) => {
-  // Create state variables for first and second options for the question
+  // Create state variables for question, first and second options for the question
+  const [questionText, setQuestionText] = useState('');
   const [firstOption, setFirstOption] = useState('');
   const [secondOption, setSecondOption] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +22,8 @@ const QuestionNew = ({ dispatch }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(handleСreateQuestion(firstOption, secondOption));
+      await dispatch(handleСreateQuestion(questionText,firstOption, secondOption));
+      setQuestionText('');
       setFirstOption('');
       setSecondOption('');
       navigate(`/`);
@@ -30,6 +32,14 @@ const QuestionNew = ({ dispatch }) => {
     }
   };
 
+/**
+   * Saves input value to the questionText state variable
+   * @param {Event} e - The change event object
+   */
+  const handleChangeQuestionText = (e) => {
+    const questionText = e.target.value;
+    setQuestionText(questionText);
+  };
   /**
    * Saves input value to the first option state variable
    * @param {Event} e - The change event object
@@ -48,11 +58,25 @@ const QuestionNew = ({ dispatch }) => {
     setSecondOption(secondOption);
   };
 
+ 
+
   return (
     <div className="question-new-container">
       <h3 className="question-new-header">Create new question</h3>
-      <div className="question-new-header">Write two options</div>
+      <div className="question-new-subheader">Write a question with two possible answers</div>
       <form className="textarea-form mb-3" onSubmit={handleSubmit}>
+      <label className="form-label">Question</label>
+        <textarea
+          itemID=""
+          data-testid="questionText-option-input"
+          placeholder="maximum 400 characters"
+          value={questionText}
+          onChange={handleChangeQuestionText}
+          className="form-control"
+          style={{ textAlign: "left" }}
+          rows="6"
+          maxLength={400}
+        ></textarea>
         <label className="form-label">First option</label>
         <textarea
           itemID=""
@@ -61,6 +85,7 @@ const QuestionNew = ({ dispatch }) => {
           value={firstOption}
           onChange={handleChangeFirstOption}
           className="form-control"
+          style={{ textAlign: "left" }}
           rows="3"
           maxLength={100}
         ></textarea>
@@ -71,6 +96,7 @@ const QuestionNew = ({ dispatch }) => {
           value={secondOption}
           onChange={handleChangeSecondOption}
           className="form-control"
+          style={{ textAlign: "left" }}
           rows="3"
           maxLength={100}
         ></textarea>

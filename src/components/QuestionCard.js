@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
 
-const QuestionCard = ({ author, time, avatar, id }) => {
+const QuestionCard = ({ author, time, avatar, id, questionText }) => {
   // Create a navigate function using the useNavigate hook to redirect to required page
   const navigate = useNavigate();
 
   return (
     <div className="question-card-container">
-      <div>
+      <div className='question-card-top'>
         <img src={avatar} alt="Avatar" className="avatar" />
         <h5>{author}</h5>
+        <p className="question-card-questiontext">{questionText}</p>
       </div>
       <div>
         <p className="queston-card-timestamp">{time}</p>
@@ -32,6 +33,7 @@ const mapStateToProps = ({ questions, users }, { id }) => ({
   time: formatDate(questions[id].timestamp),
   avatar: users[questions[id].author].avatarURL,
   id,
+  questionText: questions[id].questionText,
 });
 
 export default connect(mapStateToProps)(QuestionCard);
