@@ -39,7 +39,7 @@ const NavBar = ({ dispatch, user }) => {
   };
 
   return (
-    <div className="nav-bar-container">
+    <section className="nav-bar-container">
       <nav className="nav-bar-menu">
         <ul>
           <li>
@@ -124,7 +124,7 @@ const NavBar = ({ dispatch, user }) => {
           </div>
         )}
       </span>
-    </div>
+    </section>
   );
 };
 

@@ -9,6 +9,10 @@
   .question-new-header {
     white-space: nowrap;
     margin-bottom: 15px;
+    font-weight: 600;
+  }
+  .question-new-subheader {
+    margin-bottom: 15px;
   }
   .textarea-form {
     display: flex;

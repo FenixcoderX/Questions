@@ -10,9 +10,11 @@
 .leaderboard-header {
   white-space: nowrap;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 .leaderboard-subheader {
   margin-bottom: 15px;
+  text-align: center;
 }
 .leaderboard-container table {
   width: 70%;

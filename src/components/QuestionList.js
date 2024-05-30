@@ -9,7 +9,7 @@ const QuestionList = ({ authedUser, questions }) => {
   // Create state variable to keep track of the current page
   const [currentPage, setCurrentPage] = useState(null);
   console.log('currentPage: ', currentPage);
-  const [questionsPerPage] = useState(3);
+  const [questionsPerPage] = useState(10);
 
   // Get the current location and navigate function from the router
   const location = useLocation();
@@ -86,10 +86,10 @@ const QuestionList = ({ authedUser, questions }) => {
   };
 
   return (
-    <div>
+    <>
       {/* Create this html code only if showNewQuestions is true */}
       {showNewQuestions && (
-        <div className="question-list-container">
+        <section className="question-list-container">
           <h3 className="question-list-header">Questions</h3>
 
           <button
@@ -104,6 +104,7 @@ const QuestionList = ({ authedUser, questions }) => {
             itemsPerPage={questionsPerPage}
             totalItems={newQuestions.length}
             paginate={paginate}
+            currentPage={currentPage}
           />
           <div className="question-list-cards">
             <ul>
@@ -115,7 +116,7 @@ const QuestionList = ({ authedUser, questions }) => {
               ))}
             </ul>
           </div>
-        </div>
+        </section>
       )}
 
       {/* Create this html code only if showNewQuestions is false */}
@@ -135,6 +136,7 @@ const QuestionList = ({ authedUser, questions }) => {
             itemsPerPage={questionsPerPage}
             totalItems={answeredQuestions.length}
             paginate={paginate}
+            currentPage={currentPage}
           />
           <div className="question-list-cards">
             <ul>
@@ -148,7 +150,7 @@ const QuestionList = ({ authedUser, questions }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -9,10 +9,22 @@
 .question-card-view-container button {
   border-radius: 35px;
 }
+.question-view-header {
+  white-space: nowrap;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
 .question-card-header {
   white-space: nowrap;
   margin-top: 20px;
   margin-bottom: 0px;
+}
+.question-view-text{
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .question-card-options {
   display: flex;

@@ -22,7 +22,7 @@ const Leaderboard = ({ users, authedUser }) => {
   return (
     <div className="leaderboard-container">
       <h3 className="leaderboard-header">Leaderboard</h3>
-      <div className="leaderboard-subheader">Most active users based on the number of questions and asnswers</div>
+      <div className="leaderboard-subheader">Most active users by total amount of questions and answers</div>
       <table>
         <thead>
           <tr>
