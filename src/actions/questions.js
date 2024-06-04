@@ -1,6 +1,7 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 export const CREATE_QUESTION = 'CREATE_QUESTION';
+export const REWRITE_QUESTION = 'REWRITE_QUESTION';
 
 /**
  * Creates an action to receive questions
@@ -127,5 +128,19 @@ export function handleСreateQuestion(questionText, optionOneText, optionTwoText
         throw new Error('There is an error creating new question. Try again.');
         //alert('There was an error creating new question. Try again.');
       });
+  };
+}
+
+
+/**
+ * Creates an action to rewrite a question
+ *
+ * @param {Object} question - The question to be rewritten
+ * @returns {Object} An action object with the type and question
+ */
+export function rewriteQuestion(question) {
+  return {
+    type: REWRITE_QUESTION,
+    question,
   };
 }

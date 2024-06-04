@@ -11,12 +11,14 @@ import Leaderboard from './Leaderboard';
 import ErrorPage from './ErrorPage';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
+import SSE from './SSE';
 import LoadingBar from 'react-redux-loading-bar';
 
 // Main component for the application
 const App = (props) => {
   const [loadingInitialData, setLoadingInitialData] = useState(true);
   const [errorLoadingData, setErrorLoadingData] = useState(false);
+
   // useEffect hook to dispatch the handleInitialData action creator when the component mounts to get the initial data from the store
   useEffect(() => {
     setLoadingInitialData(true);
@@ -44,6 +46,9 @@ const App = (props) => {
         {/* If the user is signed in and the loading data finished, and no errors, the NavBar and all other components are rendered */}
         {!UserNotSingedIn && !loadingInitialData && !errorLoadingData && (
           <NavBar />
+        )}
+         {!UserNotSingedIn && !loadingInitialData && !errorLoadingData && (
+          <SSE />
         )}
         {!UserNotSingedIn && !loadingInitialData && !errorLoadingData && (
           <Routes>

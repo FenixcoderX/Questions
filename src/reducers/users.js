@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, CREATE_USER } from '../actions/users';
+import { RECEIVE_USERS, CREATE_USER, REWRITE_USER } from '../actions/users';
 import { SAVE_QUESTION_ANSWER, CREATE_QUESTION } from '../actions/questions';
 
 //state - it is part of the state for users (state.users), it comes from combineReducers in index.js
@@ -53,6 +53,13 @@ export default function users(state = {}, action) {
         },
       };
 
+    // Rewrite user in the state
+    case REWRITE_USER: {
+      return {
+        ...state,
+        [action.user.id]: action.user,
+      };
+    }
     default:
       return state;
   }

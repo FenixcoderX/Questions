@@ -6,7 +6,7 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar';
  * Fetches all users from the server
  * @returns {Promise<Array>} A promise that resolves to an array of users
  */
-const getUsers = async () => {
+ export const getUsers = async () => {
   try {
     const response = await fetch('http://localhost:3001/users/allusers');
     const users = await response.json();
@@ -24,7 +24,7 @@ const getUsers = async () => {
  * Fetches all questions from the server
  * @returns {Promise<Array>} A promise that resolves to an array of questions
  */
-const getQuestions = async () => {
+export const getQuestions = async () => {
   try {
     const response = await fetch(
       'http://localhost:3001/questions/allquestions'
