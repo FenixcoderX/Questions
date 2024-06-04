@@ -1,13 +1,21 @@
 # Questions
-React & Redux | Hooks | JavaScript | Jest
+React & Redux | Hooks | JavaScript | Firebase Storage | Google OAuth | SSE | Jest | Responsive design
 
-[Link to API for Questions app](https://github.com/FenixcoderX/API_for_Questions_app)
+[Link to "API for Questions app"](https://github.com/FenixcoderX/API_for_Questions_app)
 
-A single-page application with questions. All data is synchronized in real time using Redux. Once the user logs in, they are able to add a new question with two answer choices, answer to the existing questions, see how other users have answered, toggle between answered and unanswered questions, and view the leaderboard showing users with the highest number of asked and answered questions.
+A single-page MERN Full Stack application allowing users to create and answer questions. Designed for use within companies, organizations, communities of residents, etc.
 
-This application is built with React & Redux and JEST for tests.
+- **State Management:** Redux is used for managing most of the app data.
+- **Real-Time Updates:** Server-Sent Events (SSE) are used to update data in real time.
+- **Security:** Specific pages on the frontend and endpoints on backend are secured to prevent unauthorized access.
 
-This application works with API that connects with mongoDB.
+Users are able to:
+
+1. **Authentication:** Sign up and log in either by using their credentials or by using Google OAuth. They can also upload an avatar image.
+2. **Question Creation:** Add a new question with two answer choices.
+3. **Questions Navigation:** Toggle between answered and unanswered questions and use pagination to select the page in the question list.
+4. **Answering Questions:** Answer to the existing questions and see how other users have answered.
+5. **Leaderboard:** View the leaderboard showing most active users by total amount of questions and answers.
 
 # Installation and usage
 To get started:
@@ -27,107 +35,13 @@ npm test
 ```
  to run tests
 
- # LogIn to the app:
- **username:** benanderson
+ # Example LogIn credentials to the app:
+ **E-mail:** benanderson@gmail.com
 
  **password:** password123
  
  or 
 
- **username:** annako
+ **E-mail:** annako@gmail.com
 
- **password:** abc321
-
-
-## Data
-
-There are two types of objects stored in our database:
-
-* Users
-* Questions
-
-### Users
-
-Users include:
-
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| password   | String           | The user’s password in order to log in the application |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
-
-### Questions
-
-Questions include:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
-
-### Voting Options
-
-Voting options are attached to questions. They include:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
-
-Code talk to the database via 4 methods:
-
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
-
-1) `_getUsers()` Method
-
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
-
-2) `_getQuestions()` Method
-
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
-
-3) `_saveQuestion(question)` Method
-
-*Description*: Save the polling question in the database. If one of the parameters are missing, an error is thrown.
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
-
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
-
-4) `_saveQuestionAnswer(object)` Method
-
-*Description*: Save the answer to a particular question in the database. If one of the parameters are missing, an error is thrown.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
-
-
-
+ **password:** password123
