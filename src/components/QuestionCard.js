@@ -1,11 +1,9 @@
 import './QuestionCard.css';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/helpers';
+import { Link } from 'react-router-dom';
 
 const QuestionCard = ({ author, time, avatar, id, questionText }) => {
-  // Create a navigate function using the useNavigate hook to redirect to required page
-  const navigate = useNavigate();
 
   return (
     <div className="question-card-container">
@@ -16,12 +14,12 @@ const QuestionCard = ({ author, time, avatar, id, questionText }) => {
       </div>
       <div>
         <p className="queston-card-timestamp">{time}</p>
-        <button
-          className="btn btn-dark text-nowrap"
-          onClick={() => navigate(`/question/${id}`)}
+        <Link
+          className="btn btn-dark text-nowrap question-card-button"
+          to={`/question/${id}`}
         >
           Show
-        </button>
+        </Link>
       </div>
     </div>
   );
