@@ -44,7 +44,7 @@ const LogIn = ({ dispatch }) => {
   const handleChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
-
+    
   };
   const handleChangePassword = (e) => {
     const password = e.target.value;
@@ -61,7 +61,7 @@ const LogIn = ({ dispatch }) => {
       <form className="input-form mb-3" onSubmit={handleSubmit}>
         <label className="form-label">E-mail</label>
         <input
-          type='email'
+          type="email"
           name="email"
           value={email}
           onChange={handleChangeEmail}
@@ -86,7 +86,7 @@ const LogIn = ({ dispatch }) => {
         </button>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
-      <OAuth/>
+      <OAuth />
       <div className="mt-3">
         {' '}
         Don't have an account? <Link to="/signup">Sing Up</Link>
