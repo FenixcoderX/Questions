@@ -14,13 +14,27 @@ Object {
           Create new question
         </h3>
         <div
-          class="question-new-header"
+          class="question-new-subheader"
         >
-          Write two options
+          Write a question with two possible answers
         </div>
         <form
           class="textarea-form mb-3"
         >
+          <label
+            class="form-label"
+          >
+            Question
+          </label>
+          <textarea
+            class="form-control"
+            data-testid="questionText-option-input"
+            itemid=""
+            maxlength="400"
+            placeholder="maximum 400 characters"
+            rows="6"
+            style="text-align: left;"
+          />
           <label
             class="form-label"
           >
@@ -33,6 +47,7 @@ Object {
             maxlength="100"
             placeholder="maximum 100 characters"
             rows="3"
+            style="text-align: left;"
           />
           <label
             class="form-label"
@@ -45,6 +60,7 @@ Object {
             maxlength="100"
             placeholder="maximum 100 characters"
             rows="3"
+            style="text-align: left;"
           />
           <button
             class="btn btn-dark text-nowrap"
@@ -68,13 +84,27 @@ Object {
         Create new question
       </h3>
       <div
-        class="question-new-header"
+        class="question-new-subheader"
       >
-        Write two options
+        Write a question with two possible answers
       </div>
       <form
         class="textarea-form mb-3"
       >
+        <label
+          class="form-label"
+        >
+          Question
+        </label>
+        <textarea
+          class="form-control"
+          data-testid="questionText-option-input"
+          itemid=""
+          maxlength="400"
+          placeholder="maximum 400 characters"
+          rows="6"
+          style="text-align: left;"
+        />
         <label
           class="form-label"
         >
@@ -87,6 +117,7 @@ Object {
           maxlength="100"
           placeholder="maximum 100 characters"
           rows="3"
+          style="text-align: left;"
         />
         <label
           class="form-label"
@@ -99,6 +130,7 @@ Object {
           maxlength="100"
           placeholder="maximum 100 characters"
           rows="3"
+          style="text-align: left;"
         />
         <button
           class="btn btn-dark text-nowrap"
