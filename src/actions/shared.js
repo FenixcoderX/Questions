@@ -8,7 +8,7 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar';
  */
  export const getUsers = async () => {
   try {
-    const response = await fetch('http://localhost:3001/users/allusers');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/allusers`);
     const users = await response.json();
     if (users.success === false) {
       throw new Error(users.message);
@@ -27,8 +27,9 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar';
 export const getQuestions = async () => {
   try {
     const response = await fetch(
-      'http://localhost:3001/questions/allquestions'
+      `${process.env.REACT_APP_API_URL}/questions/allquestions`
     );
+    
     const questions = await response.json();
     if (questions.success === false) {
       throw new Error(questions.message);

@@ -23,7 +23,7 @@ describe('getUsers', () => {
     const users = await getUsers();
     expect(users).toEqual({ success: true, data: ['user1', 'user2'] });
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith('http://localhost:3001/users/allusers');
+    expect(fetch).toHaveBeenCalledWith(`${process.env.REACT_APP_API_URL}/users/allusers`);
   });
 
   it('throws an error when success is false', async () => {
@@ -65,7 +65,7 @@ describe('getQuestions', () => {
     });
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
-      'http://localhost:3001/questions/allquestions'
+      `${process.env.REACT_APP_API_URL}/questions/allquestions`
     );
   });
 

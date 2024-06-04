@@ -15,7 +15,7 @@ const LogIn = ({ dispatch }) => {
     let AUTHED_ID = null;
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:3001/auth/login', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
         method: 'POST',
         credentials: 'include', // include cookies in request
         headers: { 'Content-Type': 'application/json' },

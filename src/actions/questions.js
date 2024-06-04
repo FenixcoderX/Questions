@@ -46,7 +46,7 @@ export function saveQuestionAnswer({ authedUser, qid, answer }) {
 export function handleSaveQuestionAnswer(qid, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState(); // get the authenticated user from the state
-    return fetch('http://localhost:3001/questions/saveanswer', {
+    return fetch(`${process.env.REACT_APP_API_URL}/questions/saveanswer`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export function handleСreateQuestion(questionText, optionOneText, optionTwoText
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
-    return fetch('http://localhost:3001/questions/create', {
+    return fetch(`${process.env.REACT_APP_API_URL}/questions/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ const SSE = ({ dispatch }) => {
   useEffect(() => {
     // Use EventSource to listen for server-sent events
     const sourceQuestion = new EventSource(
-      'http://localhost:3001/questions/updates',
+      `${process.env.REACT_APP_API_URL}/questions/updates`,
       { withCredentials: true }
     );
     // Handle the message event, which will be called when the server sends a message
@@ -17,7 +17,7 @@ const SSE = ({ dispatch }) => {
       }, 1000);
     };
 
-    const sourceUser = new EventSource('http://localhost:3001/users/updates', {
+    const sourceUser = new EventSource(`${process.env.REACT_APP_API_URL}/users/updates`, {
       withCredentials: true,
     });
     sourceUser.onmessage = function (event) {

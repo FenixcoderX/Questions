@@ -16,7 +16,7 @@ const OAuth = ({ dispatch }) => {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
       console.log('resultsFromGoogle', resultsFromGoogle);
 
-      const res = await fetch('http://localhost:3001/auth/google', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/google`, {
         method: 'POST',
         credentials: 'include', // include cookies in request
         headers: { 'Content-Type': 'application/json' },
