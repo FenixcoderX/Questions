@@ -87,7 +87,7 @@ const LogIn = ({ dispatch }) => {
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
       <OAuth/>
-      <div>
+      <div className="mt-3">
         {' '}
         Don't have an account? <Link to="/signup">Sing Up</Link>
       </div>

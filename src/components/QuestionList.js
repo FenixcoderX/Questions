@@ -6,43 +6,55 @@ import QuestionCard from './QuestionCard';
 import Pagination from './Pagination';
 
 const QuestionList = ({ authedUser, questions }) => {
-  // Create state variable to keep track of the current page
+  // Variable for timestamp of component mount
+  const [questionListTimestamp, setQuestionListTimestamp] = useState('');
+
+  // Variables for pagination
   const [currentPage, setCurrentPage] = useState(null);
-  console.log('currentPage: ', currentPage);
-  const [questionsPerPage] = useState(10);
+  const [questionsPerPage] = useState(6);
 
-  // Get the current location and navigate function from the router
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // Create state variable to toggle between new and answered questions
+  // Variable for toggling between new and answered questions
   const [showNewQuestions, setShowNewQuestions] = useState(null);
 
+  // Get the current URL location
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  /**
+   * Toggles the display of new questions and updates the URL query parameters.
+   */
   const handleQuestionToggle = () => {
     setShowNewQuestions(!showNewQuestions);
     const urlParams = new URLSearchParams(location.search);
-    console.log('showNewQuestions: ', !showNewQuestions);
     urlParams.set('showNewQuestions', String(!showNewQuestions));
     urlParams.set('page', '1');
     const searchQuery = urlParams.toString();
     navigate(`?${searchQuery}`);
   };
 
+  // Get query parameters from URL and set the state variables
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const showNewQuestions = urlParams.get('showNewQuestions');
-    console.log(showNewQuestions);
-    console.log('typeof showNewQuestions: ', typeof showNewQuestions);
     const currentPage = urlParams.get('page');
-    //console.log(currentPage);
     showNewQuestions
       ? setShowNewQuestions(showNewQuestions === 'true')
       : setShowNewQuestions(true);
     currentPage ? setCurrentPage(Number(currentPage)) : setCurrentPage(1);
   }, [location.search]);
 
-  // Create an array with keys from the questions object (aka id). First, we filter questions
-  // that the logged-in user has not responded to, and then sort them by creation time in descending order
+  // Set the timestamp of component mount
+  useEffect(() => {
+    const date = new Date();
+    setQuestionListTimestamp(date.toISOString());
+  }, []);
+
+  // FILTER AND SORT QUESTIONS
+
+  // First, filter out questions that logged-in user has not responded to.
+  // Then, filter out questions that not newer than timestamp of component mount.
+  // Finally, sort the remaining questions by their creation time in descending order
   const newQuestions = Object.keys(questions)
     .filter((key) => {
       return (
@@ -50,10 +62,12 @@ const QuestionList = ({ authedUser, questions }) => {
         !questions[key].optionTwo.votes.includes(authedUser)
       );
     })
+    .filter((key) => questions[key].updatedAt < questionListTimestamp)
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-  // Create an array with keys from the questions object (aka id). First, we filter questions
-  // that the logged-in user has responded to, and then sort them by creation time in descending order
+  // First, filter out questions that the logged-in user has responded to.
+  // Then, filter out questions that not newer than timestamp of component mount.
+  // Finally, sort them by creation time in descending order
   const answeredQuestions = Object.keys(questions)
     .filter((key) => {
       return (
@@ -61,7 +75,10 @@ const QuestionList = ({ authedUser, questions }) => {
         questions[key].optionTwo.votes.includes(authedUser)
       );
     })
+    .filter((key) => questions[key].updatedAt < questionListTimestamp)
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
+  // PAGINATION
 
   // Get current items
   const indexOfLastQuestion = currentPage * questionsPerPage;

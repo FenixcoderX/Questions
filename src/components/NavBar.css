@@ -28,6 +28,13 @@
     border-radius: 0;
     width: 110px;
   }
+
+  .nav-bar-container a:active {
+    color: purple !important;
+  }
+  .nav-bar-container a:focus {
+    color: purple;
+  }
   .nav-bar-container button {
     font-size: 13px;
     border: 0;
