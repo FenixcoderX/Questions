@@ -19,6 +19,13 @@
     color: #222;
     background-color: transparent;
 }
+@media (hover: none) {
+    .page-link:hover {
+      border-color: #2222221f;
+      color: purple;
+    }
+  }
+  
 .page-link:active {
     border-color: #2222221f;
     color: #222;
