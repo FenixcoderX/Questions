@@ -1,4 +1,4 @@
-import './Leaderboard.css';
+import './Leaderboard.sass';
 import { connect } from 'react-redux';
 
 const Leaderboard = ({ users, authedUser }) => {
@@ -39,10 +39,10 @@ const Leaderboard = ({ users, authedUser }) => {
                 <img
                   src={users[id].avatarURL}
                   alt="Avatar"
-                  className="avatar"
+                  className="leaderboard-avatar"
                 />
                 <br />
-                <span className="name-in-table">{users[id].name}</span>
+                <span className="leaderboard-name-in-table">{users[id].name}</span>
                 <br />
                 {/* {users[id].id} */}
               </td>

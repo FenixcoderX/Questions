@@ -1,4 +1,4 @@
-import './QuestionList.css';
+import './QuestionList.sass';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -111,11 +111,11 @@ const QuestionList = ({ authedUser, questions }) => {
 
           <button
             data-testid="create-button"
-            className="btn btn-outline-secondary text-nowrap question-toggle"
+            className="btn btn-outline-secondary text-nowrap question-list-toggle"
             onClick={handleQuestionToggle}
           >
-            <span className="toggle-unactive">Answered</span>{' '}
-            <span className="toggle-active">New</span>
+            <span className="question-list-toggle-unactive">Answered</span>{' '}
+            <span className="question-list-toggle-active">New</span>
           </button>
           <Pagination
             itemsPerPage={questionsPerPage}
@@ -143,11 +143,11 @@ const QuestionList = ({ authedUser, questions }) => {
 
           <button
             data-testid="create-button"
-            className="btn btn-outline-secondary text-nowrap question-toggle"
+            className="btn btn-outline-secondary text-nowrap question-list-toggle"
             onClick={handleQuestionToggle}
           >
-            <span className="toggle-active">Answered</span>{' '}
-            <span className="toggle-unactive">New</span>
+            <span className="question-list-toggle-active">Answered</span>{' '}
+            <span className="question-list-toggle-unactive">New</span>
           </button>
           <Pagination
             itemsPerPage={questionsPerPage}

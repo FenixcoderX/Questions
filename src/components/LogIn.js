@@ -1,10 +1,10 @@
-import './LogIn.css';
+import './LogIn.sass';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { setAuthedUser } from '../actions/authedUser';
 import loginpic from '../assets/logo/IMG_5694.png';
 import { Link } from 'react-router-dom';
-import OAuth from './OAuth';
+import OAuth from '../utils/OAuth';
 
 const LogIn = ({ dispatch }) => {
   const [email, setEmail] = useState('');
@@ -54,18 +54,18 @@ const LogIn = ({ dispatch }) => {
   return (
     <div className="login-container">
       <h3 className="login-header">QUESTIONS</h3>
-      <img src={loginpic} alt="loginpic" className="loginpic" />
+      <img src={loginpic} alt="loginpic" className="login-pic" />
 
       <h5>Log In</h5>
 
-      <form className="input-form mb-3" onSubmit={handleSubmit}>
+      <form className="input-form login-input-form mb-3" onSubmit={handleSubmit}>
         <label className="form-label">E-mail</label>
         <input
           type="email"
           name="email"
           value={email}
           onChange={handleChangeEmail}
-          className="form-control"
+          className="form-control login-form-control"
           maxLength={100}
         />
         <label className="form-label">Password</label>
@@ -74,7 +74,7 @@ const LogIn = ({ dispatch }) => {
           type="password"
           value={password}
           onChange={handleChangePassword}
-          className="form-control"
+          className="form-control login-form-control"
           maxLength={100}
         />
         <button

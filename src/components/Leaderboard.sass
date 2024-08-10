@@ -1,0 +1,60 @@
+.leaderboard-container
+  padding: 10px
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  align-items: center
+
+  table
+    width: 70%
+    min-width: 280px
+    max-width: 500px
+    color: #222
+    padding-left: 10px
+    padding-right: 10px
+    margin-left: auto
+    margin-right: auto
+    border-collapse: collapse
+    font-size: 12px
+    border-radius: 13px
+    border-style: solid
+    overflow: hidden
+
+    tr
+      text-align: center
+      text-wrap: nowrap
+
+      &:nth-child(even)
+        background-color: #ffffff
+
+      &:nth-child(odd)
+        background-color: #ffffff76
+
+    thead > tr > th
+      background-color: #f5f5f5
+      color: #222
+      padding: 12px
+      text-align: center
+
+    td
+      padding: 4px
+
+.leaderboard-header
+  white-space: nowrap
+  margin-bottom: 15px
+  font-weight: 600
+
+.leaderboard-subheader
+  margin-bottom: 15px
+  text-align: center
+
+.leaderboard-avatar
+  width: 40px
+  height: 40px
+  border-radius: 100%
+  overflow: hidden
+
+.leaderboard-name-in-table
+  font-weight: 500

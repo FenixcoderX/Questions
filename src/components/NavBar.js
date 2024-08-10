@@ -1,4 +1,4 @@
-import './NavBar.css';
+import './NavBar.sass';
 import useResize from '../utils/hooks';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -43,7 +43,7 @@ const NavBar = ({ dispatch, user }) => {
       <nav className="nav-bar-menu">
         <ul>
           <li>
-            <Link className="navbar-brand" to="/">
+            <Link className="nav-bar-brand" to="/">
               <img src={homeicon} alt="Home" style={{ width: '30px' }} />
             </Link>
           </li>
@@ -52,8 +52,8 @@ const NavBar = ({ dispatch, user }) => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? 'link-active btn btn-outline-secondary text-nowrap '
-                  : 'btn btn-outline-secondary text-nowrap link'
+                  ? 'link-active nav-bar-link-active btn btn-outline-secondary nav-bar-btn-outline-secondary text-nowrap '
+                  : 'btn btn-outline-secondary nav-bar-btn-outline-secondary text-nowrap link nav-bar-link'
               }
               to="/leaderboard"
             >
@@ -64,8 +64,8 @@ const NavBar = ({ dispatch, user }) => {
             <NavLink
               className={({ isActive }) =>
                 isActive
-                  ? 'btn btn-outline-secondary text-nowrap link-active'
-                  : 'btn btn-outline-secondary text-nowrap link'
+                  ? 'btn btn-outline-secondary nav-bar-btn-outline-secondary text-nowrap link-active nav-bar-link-active'
+                  : 'btn btn-outline-secondary nav-bar-btn-outline-secondary text-nowrap link nav-bar-link'
               }
               to="/new"
             >
@@ -79,7 +79,7 @@ const NavBar = ({ dispatch, user }) => {
         {!screenWidthTrueFalse.isScreenSm && (
           <ul>
             <li>
-              <img src={user.avatarURL} alt="Avatar" className="avatar-login" />
+              <img src={user.avatarURL} alt="Avatar" className="nav-bar-avatar" />
             </li>
             <li id="nav-user-name">
               <span>{user.name}</span>
@@ -96,7 +96,7 @@ const NavBar = ({ dispatch, user }) => {
         )}
         {/* If the screen width is small then display this html code */}
         {screenWidthTrueFalse.isScreenSm && (
-          <div className="dropdown">
+          <div className="dropdown nav-bar-dropdown">
             <span
               className=""
               type="button"
@@ -105,13 +105,13 @@ const NavBar = ({ dispatch, user }) => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <img src={user.avatarURL} alt="Avatar" className="avatar-login" />
+              <img src={user.avatarURL} alt="Avatar" className="nav-bar-avatar" />
             </span>
-            <ul className="dropdown-menu " aria-labelledby="dropdownMenuButton">
-              <li id="nav-user-name" className="drop-down-container">
+            <ul className="dropdown-menu nav-bar-dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li id="nav-bar-user-name" className="drop-down-container">
                 {user.name}
               </li>
-              <li className="drop-down-container">
+              <li className="nav-bar-drop-down-container">
                 <button
                   className="btn btn-outline-secondary text-nowrap"
                   type="button"

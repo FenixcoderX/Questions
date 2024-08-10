@@ -1,4 +1,4 @@
-import './SignUp.css';
+import './SignUp.sass';
 import { useState, useEffect, useRef } from 'react';
 import loginpic from '../assets/logo/IMG_5694.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -145,14 +145,14 @@ const SignUp = ({ dispatch }) => {
   };
 
   return (
-    <div className="login-container">
-      <h3 className="login-header">QUESTIONS</h3>
-      <img src={loginpic} alt="loginpic" className="loginpic" />
+    <div className="singup-container">
+      <h3 className="singup-header">QUESTIONS</h3>
+      <img src={loginpic} alt="loginpic" className="singup-pic" />
 
       <h5>Sign Up</h5>
 
-      <form className="input-form mb-3" onSubmit={handleSubmit}>
-        <label className="form-label">E-mail</label>
+      <form className="input-form singup-input-form mb-3" onSubmit={handleSubmit}>
+        <label className="form-label singup-form-label">E-mail</label>
         <input
           name="email"
           type="email"
@@ -161,7 +161,7 @@ const SignUp = ({ dispatch }) => {
           className="form-control"
           maxLength={100}
         />
-        <label className="form-label">Username</label>
+        <label className="form-label singup-form-label">Username</label>
         <input
           name="name"
           value={formData.name}
@@ -169,7 +169,7 @@ const SignUp = ({ dispatch }) => {
           className="form-control"
           maxLength={20}
         />
-        <label className="form-label">Password</label>
+        <label className="form-label singup-form-label">Password</label>
         <input
           name="password"
           type="password"
@@ -178,7 +178,7 @@ const SignUp = ({ dispatch }) => {
           className="form-control"
           maxLength={100}
         />
-        <label className="form-label">Confirm Password</label>
+        <label className="form-label singup-form-label">Confirm Password</label>
         <input
           name="confirmPassword"
           type="password"
@@ -191,7 +191,7 @@ const SignUp = ({ dispatch }) => {
           <p style={{ color: 'red' }}>Passwords are not matched!</p>
         )}
 
-        <label className="form-label">Avatar</label>
+        <label className="form-label singup-form-label">Avatar</label>
         <input
           type="file"
           accept="image/*"
@@ -202,7 +202,7 @@ const SignUp = ({ dispatch }) => {
         <img
           src={imageFileUrl}
           alt="Avatar"
-          className="avatar avatar-form"
+          className="singup-avatar singup-avatar-form"
           onClick={() => fileRef.current.click()}
         />
         {imageFileUploading && imageFileUploadProgress < 100 && (

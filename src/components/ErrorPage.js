@@ -1,4 +1,4 @@
-import './ErrorPage.css';
+import './ErrorPage.sass';
 // Component for error page
 const ErrorPage = ({errorType,errorMessage}) => {
   return (

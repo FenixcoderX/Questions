@@ -1,4 +1,4 @@
-import './QuestionView.css';
+import './QuestionView.sass';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -57,19 +57,19 @@ const QuestionView = ({
     </div>
   ) : (
     // Otherwise, display the question view
-    <div className="question-card-view-container">
+    <div className="question-view-container">
       <h3 className='question-view-header'>Question by</h3>
       <div>
-        <img src={avatar} alt="Avatar" className="avatar" />
-        <div className="name-in-questionview">{author}</div>
-        <h3 className="question-card-header">Question</h3>
-        <div className="question-card-options">
+        <img src={avatar} alt="Avatar" className="question-view-avatar" />
+        <div className="question-view-name">{author}</div>
+        <h3 className="question-view-header">Question</h3>
+        <div className="question-view-options">
             <p className="question-view-text">{questionText}</p>
         </div>
-        <h3 className="question-card-header">Choose the answer</h3>
+        <h3 className="question-view-header">Choose the answer</h3>
         {/* If the question is  not answered, display the following html code for option one */}
         {!answered && (
-          <div className="question-card-options">
+          <div className="question-view-options">
             <p className="question-view-text">{optionOne}</p>
             <button
               disabled={answered}
@@ -84,13 +84,13 @@ const QuestionView = ({
         {/* If the question has been answered, display the following html code and set the class based on the answer */}
         {(answered === 'optionOne' || answered === 'optionTwo') && (
           <div
-            className={`question-card-options ${
-              answered === 'optionOne' ? 'option-selected' : 'option-unselected'
+            className={`question-view-options ${
+              answered === 'optionOne' ? 'question-view-option-selected' : 'question-view-option-unselected'
             }`}
           >
             <p className="question-view-text">{optionOne}</p>
-            <div className="votes mt-3">Votes:{numberOfUsersForOptionOne}</div>{' '}
-            <span className="votes">
+            <div className="question-view-votes mt-3">Votes:{numberOfUsersForOptionOne}</div>{' '}
+            <span className="question-view-votes">
               {/* Calculate the percentage of users who voted for optionOne */}
               {((numberOfUsersForOptionOne * 100) / NumberOfAllUsers).toFixed(0)}% of users
               are voted
@@ -100,7 +100,7 @@ const QuestionView = ({
 
         {/* If the question is  not answered, display the following html code for option two */}
         {!answered && (
-          <div className="question-card-options">
+          <div className="question-view-options">
             <p className="question-view-text">{optionTwo}</p>
 
             <button
@@ -116,13 +116,13 @@ const QuestionView = ({
         {/* If the question has been answered, display the following html code and set the class based on the answer */}
         {(answered === 'optionTwo' || answered === 'optionOne') && (
           <div
-            className={`question-card-options ${
-              answered === 'optionTwo' ? 'option-selected' : 'option-unselected'
+            className={`question-view-options ${
+              answered === 'optionTwo' ? 'question-view-option-selected' : 'question-view-option-unselected'
             }`}
           >
             <p className="question-view-text">{optionTwo}</p>
-            <div className="votes mt-3">Votes:{numberOfUsersForOptionTwo}</div>{' '}
-            <span className="votes">
+            <div className="question-view-votes mt-3">Votes:{numberOfUsersForOptionTwo}</div>{' '}
+            <span className="question-view-votes">
               {((numberOfUsersForOptionTwo * 100) / NumberOfAllUsers).toFixed(0)}% of users
               are voted
             </span>

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.sass';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
@@ -11,7 +11,7 @@ import Leaderboard from './Leaderboard';
 import ErrorPage from './ErrorPage';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
-import SSE from './SSE';
+import SSE from '../utils/SSE';
 import LoadingBar from 'react-redux-loading-bar';
 
 // Main component for the application
@@ -42,7 +42,7 @@ const App = (props) => {
     <>
       {/* external component that shows a loading bar until app has finished all initial dispatches */}
       <LoadingBar />
-      <div className="main-container">
+      <div className="app-main-container">
         {/* If the user is signed in and the loading data finished, and no errors, the NavBar and all other components are rendered */}
         {!UserNotSingedIn && !loadingInitialData && !errorLoadingData && (
           <NavBar />

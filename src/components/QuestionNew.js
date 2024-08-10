@@ -1,4 +1,4 @@
-import './QuestionNew.css';
+import './QuestionNew.sass';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -64,7 +64,7 @@ const QuestionNew = ({ dispatch }) => {
     <div className="question-new-container">
       <h3 className="question-new-header">Create new question</h3>
       <div className="question-new-subheader">Write a question with two possible answers</div>
-      <form className="textarea-form mb-3" onSubmit={handleSubmit}>
+      <form className="textarea-form question-new-textarea-form mb-3" onSubmit={handleSubmit}>
       <label className="form-label">Question</label>
         <textarea
           itemID=""
